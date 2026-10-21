@@ -1,0 +1,25 @@
+# =============================================================
+# Configuración central del experimento
+# Regla: ningún parámetro se escribe dentro del código.
+# El código solo lee este archivo. Así cambiar de modelo o de k
+# es editar una línea y cada ejecución queda reproducible.
+# =============================================================
+
+llm:
+  modelo: "llama3.1:8b"   # PROVISIONAL (Etapa 1). Se fija definitivamente en la Etapa 4.
+  temperatura: 0.0        # 0 = respuestas deterministas (misma pregunta -> misma respuesta)
+  top_p: 1.0
+  semilla: 42             # fija el azar interno del modelo
+  num_ctx: 8192           # ventana de contexto; Jovanovski et al. (2026) obtuvieron mejores resultados con 8192
+  max_tokens: 512         # longitud máxima de cada respuesta
+
+hardware:                 # se copia tal cual a la ficha técnica del artículo
+  equipo: "PC personal"
+  gpu: "NVIDIA GeForce RTX 3060 12 GB"
+  driver: "610.74"
+  cpu: "AMD Ryzen 7 5700X (8 núcleos)"
+  ram: "16 GB DDR4 2400 MHz"
+  so: "Windows"
+
+verificacion:
+  repeticiones: 3         # Jovanovski et al. (2026) repiten cada medición 3 veces y promedian

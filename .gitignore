@@ -1,0 +1,9 @@
+# Entorno virtual de Python (cada uno lo crea en su PC)
+.venv/
+__pycache__/
+
+# Base vectorial (se regenera desde el corpus)
+chroma_db/
+
+# Documentos con licencia: ISO 27001 NO se sube al repositorio
+corpus/fuentes/iso/

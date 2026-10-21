@@ -1,0 +1,67 @@
+{
+  "fecha": "2026-10-20T20:18:48",
+  "modelo": {
+    "modelo": "llama3.1:8b",
+    "familia": "llama",
+    "parametros": "8.0B",
+    "cuantizacion": "Q4_K_M",
+    "formato": "gguf",
+    "ollama": "ollama version is 0.40.6"
+  },
+  "parametros_inferencia": {
+    "modelo": "llama3.1:8b",
+    "temperatura": 0.0,
+    "top_p": 1.0,
+    "semilla": 42,
+    "num_ctx": 8192,
+    "max_tokens": 512
+  },
+  "hardware": {
+    "equipo": "PC personal",
+    "gpu": "NVIDIA GeForce RTX 3060 12 GB",
+    "driver": "610.74",
+    "cpu": "AMD Ryzen 7 5700X (8 núcleos)",
+    "ram": "16 GB DDR4 2400 MHz",
+    "so": "Windows"
+  },
+  "resumen": {
+    "t_total_s": {
+      "media": 7.26,
+      "desv": 0.073
+    },
+    "tokens_por_s": {
+      "media": 62.05,
+      "desv": 0.535
+    },
+    "vram_mb_max": 6924
+  },
+  "corridas": [
+    {
+      "respuesta": "Para verificar que la organización cumple con la gestión de cuentas descrita en AC-2, un auditor debería revisar los siguientes aspectos:\n\n1. **Tipos de cuentas permitidas y prohibidas**: Verificar que la organización tenga definidos los tipos de cuentas que están permitidas y prohibidas en su entorno, y que estos sean coherentes con la política de la organización.\n2. **Asignación de administradores de cuentas**: Verificar que se hayan asignado administradores de cuentas responsables de la creación, habilitación, modificación, deshabilitación y eliminación de cuentas.\n3. **Condiciones de membresía de grupos y roles**: Verificar que se hayan establecido condiciones claras para la membresía de grupos y roles, y que estas sean coherentes con la política de la organización.\n4. **Creación, habilitación, modificación, deshabilitación y eliminación de cuentas**: Verificar que las cuentas se creen, habiliten, modifiquen, deshabiliten y eliminen de acuerdo con la política de la organización.\n5. **Notificación a administradores de cuentas**: Verificar que los administradores de cuentas sean notificados cuando una cuenta ya no sea necesaria, cuando un usuario sea despedido o transfirido, y cuando cambie la necesidad de acceso o el uso del sistema.\n6. **Monitoreo del uso de cuentas**: Verificar que la organización esté monitoreando el uso de cuentas y que se revisen las cuentas para asegurarse de que cumplan con los requisitos de gestión de cuentas.\n7. **Frecuencia de revisión**: Verificar que la organización tenga establecida una frecuencia de revisión definida para asegurarse de que las cuentas estén siendo utilizadas de acuerdo con la política de la organización.\n\nAl revisar estos aspectos, un auditor puede determinar si la organización está cumpliendo con la gestión de cuentas descrita en AC-2.",
+      "tokens_entrada": 186,
+      "tokens_salida": 448,
+      "t_primer_token_aprox_s": 0.021,
+      "t_total_s": 7.311,
+      "tokens_por_s": 61.66,
+      "vram_mb": 6918
+    },
+    {
+      "respuesta": "Para verificar que la organización cumple con la gestión de cuentas descrita en AC-2, un auditor debería revisar los siguientes aspectos:\n\n1. **Tipos de cuentas permitidas y prohibidas**: Verificar que la organización tenga definidos los tipos de cuentas que están permitidas y prohibidas en su entorno, y que estos sean coherentes con la política de la organización.\n2. **Asignación de administradores de cuentas**: Verificar que se hayan asignado administradores de cuentas responsables de la creación, habilitación, modificación, deshabilitación y eliminación de cuentas.\n3. **Condiciones de membresía de grupos y roles**: Verificar que se hayan establecido condiciones claras para la membresía de grupos y roles, y que estas sean coherentes con la política de la organización.\n4. **Creación, habilitación, modificación, deshabilitación y eliminación de cuentas**: Verificar que las cuentas se creen, habiliten, modifiquen, deshabiliten y eliminen de acuerdo con la política de la organización.\n5. **Notificación a administradores de cuentas**: Verificar que los administradores de cuentas sean notificados cuando una cuenta ya no sea necesaria, cuando un usuario sea despedido o transfirido, y cuando cambie la necesidad de acceso o el uso del sistema.\n6. **Monitoreo del uso de cuentas**: Verificar que la organización esté monitoreando el uso de cuentas y que se revisen las cuentas para asegurarse de que cumplan con los requisitos de gestión de cuentas.\n7. **Frecuencia de revisión**: Verificar que la organización tenga establecida una frecuencia de revisión definida para asegurarse de que las cuentas estén siendo utilizadas de acuerdo con la política de la organización.\n\nAl revisar estos aspectos, un auditor puede determinar si la organización está cumpliendo con la gestión de cuentas descrita en AC-2.",
+      "tokens_entrada": 186,
+      "tokens_salida": 448,
+      "t_primer_token_aprox_s": 0.023,
+      "t_total_s": 7.293,
+      "tokens_por_s": 61.83,
+      "vram_mb": 6924
+    },
+    {
+      "respuesta": "Para verificar que la organización cumple con la gestión de cuentas descrita en AC-2, un auditor debería revisar los siguientes aspectos:\n\n1. **Tipos de cuentas permitidas y prohibidas**: Verificar que la organización tenga definidos los tipos de cuentas que están permitidas y prohibidas en su entorno, y que estos sean coherentes con la política de la organización.\n2. **Asignación de administradores de cuentas**: Verificar que se hayan asignado administradores de cuentas responsables de la creación, habilitación, modificación, deshabilitación y eliminación de cuentas.\n3. **Condiciones de membresía de grupos y roles**: Verificar que se hayan establecido condiciones claras para la membresía de grupos y roles, y que estas sean coherentes con la política de la organización.\n4. **Creación, habilitación, modificación, deshabilitación y eliminación de cuentas**: Verificar que las cuentas se creen, habiliten, modifiquen, deshabiliten y eliminen de acuerdo con la política de la organización.\n5. **Notificación a administradores de cuentas**: Verificar que los administradores de cuentas sean notificados cuando una cuenta ya no sea necesaria, cuando un usuario sea despedido o transfirido, y cuando cambie la necesidad de acceso o el uso del sistema.\n6. **Monitoreo del uso de cuentas**: Verificar que la organización esté monitoreando el uso de cuentas y que se revisen las cuentas para asegurarse de que cumplan con los requisitos de gestión de cuentas.\n7. **Frecuencia de revisión**: Verificar que la organización tenga establecida una frecuencia de revisión definida para asegurarse de que las cuentas estén siendo utilizadas de acuerdo con la política de la organización.\n\nAl revisar estos aspectos, un auditor puede determinar si la organización está cumpliendo con la gestión de cuentas descrita en AC-2.",
+      "tokens_entrada": 186,
+      "tokens_salida": 448,
+      "t_primer_token_aprox_s": 0.023,
+      "t_total_s": 7.176,
+      "tokens_por_s": 62.66,
+      "vram_mb": 6924
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# Etapa 1: solo lo mínimo para hablar con el LLM local.
+# En etapas siguientes se agregan chromadb, langchain, sentence-transformers, umap-learn, etc.
+ollama
+pyyaml
