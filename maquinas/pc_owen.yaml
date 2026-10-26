@@ -1,0 +1,7 @@
+# Máquina de DESARROLLO (Owen). Los resultados finales NO se reportan desde aquí.
+nombre: "pc_owen"
+rol: "desarrollo"
+equipo: "PC personal"
+cpu: "AMD Ryzen 7 5700X (8 núcleos / 16 hilos)"
+ram: "16 GB DDR4 2400 MHz"
+# GPU, driver, VRAM total y sistema operativo se detectan automáticamente al ejecutar.

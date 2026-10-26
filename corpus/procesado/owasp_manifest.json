@@ -1,0 +1,8 @@
+{
+  "fuente": "github.com/OWASP/Top10, carpeta 2021/docs/en (rama master)",
+  "fecha_extraccion": "2026-10-25T21:08:14",
+  "categorias": 10,
+  "registros": 60,
+  "palabras_totales": 8348,
+  "excluido": "secciones References (solo enlaces)"
+}

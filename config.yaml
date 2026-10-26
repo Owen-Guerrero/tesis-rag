@@ -1,25 +1,26 @@
 # =============================================================
-# Configuración central del experimento
+# Configuración central del EXPERIMENTO (igual en todas las máquinas)
 # Regla: ningún parámetro se escribe dentro del código.
-# El código solo lee este archivo. Así cambiar de modelo o de k
-# es editar una línea y cada ejecución queda reproducible.
+# El hardware NO va aquí: va en maquinas/<nombre>.yaml
 # =============================================================
 
 llm:
-  modelo: "llama3.1:8b"   # PROVISIONAL (Etapa 1). Se fija definitivamente en la Etapa 4.
-  temperatura: 0.0        # 0 = respuestas deterministas (misma pregunta -> misma respuesta)
+  modelo: "llama3.1:8b"   # PROVISIONAL. Se fija tras la selección del OE2.
+  temperatura: 0.0        # 0 = respuestas deterministas
   top_p: 1.0
-  semilla: 42             # fija el azar interno del modelo
-  num_ctx: 8192           # ventana de contexto; Jovanovski et al. (2026) obtuvieron mejores resultados con 8192
-  max_tokens: 512         # longitud máxima de cada respuesta
+  semilla: 42
+  num_ctx: 8192           # Jovanovski et al. (2026): mejores resultados con 8192
+  max_tokens: 512
+  razonamiento: null      # modelos con "thinking": false o "low"; null = no se envía
 
-hardware:                 # se copia tal cual a la ficha técnica del artículo
-  equipo: "PC personal"
-  gpu: "NVIDIA GeForce RTX 3060 12 GB"
-  driver: "610.74"
-  cpu: "AMD Ryzen 7 5700X (8 núcleos)"
-  ram: "16 GB DDR4 2400 MHz"
-  so: "Windows"
+# OE2: modelos candidatos de pesos abiertos (se comparan con las dos familias de métricas).
+# Tres de ellos fueron evaluados por Jovanovski et al. (2026).
+# En la PC personal (12 GB) solo entran los dos primeros.
+candidatos_llm:
+  - "llama3.1:8b"
+  - "qwen2.5:14b"
+  - "gpt-oss:20b"
+  - "qwen2.5:32b"
 
 verificacion:
-  repeticiones: 3         # Jovanovski et al. (2026) repiten cada medición 3 veces y promedian
+  repeticiones: 3         # Jovanovski et al. (2026) repiten cada medición 3 veces
