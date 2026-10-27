@@ -1,0 +1,36 @@
+{
+  "fecha_extraccion": "2026-10-27T14:43:59",
+  "ISO/IEC 27001:2022": {
+    "archivo": "ISO_IEC_27001_2022.pdf",
+    "sha256": "d9d0d227bd9aaacaf713998df33bc5d234d9b17e689c7c339fd5df5d4f574e42",
+    "registros": 123,
+    "por_tipo": {
+      "requisito": 30,
+      "control_anexo_a": 93
+    },
+    "palabras": 5653
+  },
+  "ISO/IEC 27002:2022": {
+    "archivo": "ISO_IEC_27002_2022.pdf",
+    "sha256": "1da41b305cce13c7d9150e8ceb520eb13d082d8a80080f9768a5dc9f2900b7e2",
+    "registros": 131,
+    "por_tipo": {
+      "definicion": 38,
+      "control": 93
+    },
+    "palabras": 47451,
+    "controles_identity_and_access_management": [
+      "5.3",
+      "5.15",
+      "5.16",
+      "5.17",
+      "5.18",
+      "5.37",
+      "8.2",
+      "8.3",
+      "8.4",
+      "8.5"
+    ]
+  },
+  "nota": "El texto de ISO no se versiona en GitHub (licencia). Solo este manifiesto."
+}

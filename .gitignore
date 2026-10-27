@@ -5,5 +5,12 @@ __pycache__/
 # Base vectorial (se regenera desde el corpus)
 chroma_db/
 
-# Documentos con licencia: ISO 27001 NO se sube al repositorio
+# ---- Texto con licencia (ISO/IEC 27001 y 27002): NUNCA se sube al repositorio ----
+# PDF originales
 corpus/fuentes/iso/
+# Texto extraído de ISO (se regenera con corpus/extraer_iso.py)
+corpus/procesado/iso27001_2022.jsonl
+corpus/procesado/iso27002_2022.jsonl
+# Archivos derivados que incluyen texto de ISO (hojas, árbol RAPTOR)
+corpus/procesado/hojas*.jsonl
+corpus/procesado/arbol*
