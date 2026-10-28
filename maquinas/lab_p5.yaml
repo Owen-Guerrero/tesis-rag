@@ -6,4 +6,4 @@ cpu: "Intel Xeon W7 (24 núcleos / 48 hilos)"
 ram: "256 GB"
 # GPU, driver, VRAM total y sistema operativo se detectan automáticamente al ejecutar.
 # Irwin: anotar aquí el número/código de la PC del laboratorio que usaste:
-id_equipo_lab: ""
+id_equipo_lab: "I21328"

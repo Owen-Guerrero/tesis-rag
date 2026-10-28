@@ -1,0 +1,5 @@
+fecha,maquina,gpu,modelo,parametros,cuantizacion,vram_reposo_mb,vram_modelo_mb,vram_gpu_max_mb,carga_en_frio_s,t_primer_token_s,t_total_s_media,t_total_s_desv,tokens_por_s_media,tokens_por_s_desv,log
+2026-10-28T15:57:32,lab_p5,NVIDIA RTX 6000 Ada Generation,llama3.1:8b,8.0B,Q4_K_M,1532,5676,7565,62.397,0.023,3.138,0.012,145.593,0.154,verif_llm_lab_p5_llama3.1-8b_20261028_1557.json
+2026-10-28T15:58:17,lab_p5,NVIDIA RTX 6000 Ada Generation,qwen2.5:14b,14.8B,Q4_K_M,1453,9942,11831,25.225,0.029,4.922,0.019,83.093,0.105,verif_llm_lab_p5_qwen2.5-14b_20261028_1558.json
+2026-10-28T15:59:17,lab_p5,NVIDIA RTX 6000 Ada Generation,gpt-oss:20b,20.9B,MXFP4,1453,12265,14359,46.868,0.024,3.095,0.001,167.49,0.345,verif_llm_lab_p5_gpt-oss-20b_20261028_1559.json
+2026-10-28T16:00:09,lab_p5,NVIDIA RTX 6000 Ada Generation,qwen2.5:32b,32.8B,Q4_K_M,1453,20976,22879,7.253,0.042,10.861,0.055,39.53,0.312,verif_llm_lab_p5_qwen2.5-32b_20261028_1600.json

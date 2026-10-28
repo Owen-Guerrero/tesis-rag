@@ -1,0 +1,83 @@
+{
+  "fecha": "2026-10-28T15:58:17",
+  "maquina": {
+    "nombre": "lab_p5",
+    "rol": "ejecucion_final",
+    "equipo": "Lenovo ThinkStation P5 (laboratorio, Universidad de Lima)",
+    "cpu": "Intel Xeon W7 (24 núcleos / 48 hilos)",
+    "ram": "256 GB",
+    "id_equipo_lab": "I21328",
+    "gpu": "NVIDIA RTX 6000 Ada Generation",
+    "driver_nvidia": "596.51",
+    "vram_total_mb": 49140,
+    "sistema_operativo": "Windows 11 (10.0.26200)",
+    "python": "3.13.2",
+    "ollama": "ollama version is 0.40.12"
+  },
+  "modelo": {
+    "modelo": "qwen2.5:14b",
+    "familia": "qwen2",
+    "parametros": "14.8B",
+    "cuantizacion": "Q4_K_M",
+    "formato": "gguf"
+  },
+  "parametros_inferencia": {
+    "modelo": "qwen2.5:14b",
+    "temperatura": 0.0,
+    "top_p": 1.0,
+    "semilla": 42,
+    "num_ctx": 8192,
+    "max_tokens": 512,
+    "razonamiento": null
+  },
+  "vram_reposo_mb": 1453,
+  "carga_en_frio_s": 25.225,
+  "resumen": {
+    "t_total_s": {
+      "media": 4.922,
+      "desv": 0.019
+    },
+    "t_primer_token_s": {
+      "media": 0.029,
+      "desv": 0.001
+    },
+    "tokens_por_s": {
+      "media": 83.093,
+      "desv": 0.105
+    },
+    "vram_gpu_max_mb": 11831,
+    "vram_modelo_mb": 9942
+  },
+  "corridas": [
+    {
+      "respuesta": "Un auditor debería revisar varios elementos para verificar que la organización cumple con la gestión de cuentas descrita en AC-2:\n\n1. **Documentación de Políticas**: Revisar la documentación oficial de la organización que define los tipos de cuentas permitidas y prohibidas, así como las políticas relacionadas con la creación, modificación, deshabilitación y eliminación de cuentas.\n\n2. **Asignación de Managers de Cuentas**: Verificar que cada cuenta tenga un manager asignado y que estos managers estén al tanto de las responsabilidades y obligaciones asociadas a su rol.\n\n3. **Registro de Actividades**: Revisar los registros de creación, modificación, deshabilitación y eliminación de cuentas para asegurarse de que estas acciones se realicen de acuerdo con las políticas establecidas.\n\n4. **Notificaciones**: Verificar que se notifiquen a los managers de cuentas cuando una cuenta ya no es necesaria, cuando un usuario es despedido o transferido, y cuando cambia el uso del sistema o la necesidad de conocimiento.\n\n5. **Monitoreo y Revisión**: Evaluar los procedimientos de monitoreo y revisión de cuentas para asegurarse de que se realicen con la frecuencia definida y que se documenten los resultados de estas revisiones.\n\n6. **Cumplimiento con Requisitos de Gestión de Cuentas**: Revisar que las cuentas cumplan con los requisitos de gestión de cuentas establecidos, incluyendo la pertenencia a grupos y roles, y que se mantengan actualizadas conforme a los cambios en las necesidades del sistema y los permisos de los usuarios.\n\nEstas acciones ayudarán al auditor a determinar si la organización está cumpliendo con los requisitos de gestión de cuentas establecidos en AC-2.",
+      "tokens_entrada": 181,
+      "tokens_salida": 404,
+      "t_primer_token_aprox_s": 0.028,
+      "t_total_s": 4.93,
+      "tokens_por_s": 83.2,
+      "vram_gpu_mb": 11831,
+      "vram_modelo_mb": 9942
+    },
+    {
+      "respuesta": "Un auditor debería revisar varios elementos para verificar que la organización cumple con la gestión de cuentas descrita en AC-2:\n\n1. **Documentación de Políticas**: Revisar la documentación oficial de la organización que define los tipos de cuentas permitidas y prohibidas, así como las políticas relacionadas con la creación, modificación, deshabilitación y eliminación de cuentas.\n\n2. **Asignación de Managers de Cuentas**: Verificar que cada cuenta tenga un manager asignado y que estos managers estén al tanto de las responsabilidades y obligaciones asociadas a su rol.\n\n3. **Registro de Actividades**: Revisar los registros de creación, modificación, deshabilitación y eliminación de cuentas para asegurarse de que estas acciones se realicen de acuerdo con las políticas establecidas.\n\n4. **Notificaciones**: Verificar que se notifiquen a los managers de cuentas cuando una cuenta ya no es necesaria, cuando un usuario es despedido o transferido, y cuando cambia el uso del sistema o la necesidad de conocimiento.\n\n5. **Monitoreo y Revisión**: Evaluar los procedimientos de monitoreo y revisión de cuentas para asegurarse de que se realicen con la frecuencia definida y que se documenten los resultados de estas revisiones.\n\n6. **Cumplimiento con Requisitos de Gestión de Cuentas**: Revisar que las cuentas cumplan con los requisitos de gestión de cuentas establecidos, incluyendo la pertenencia a grupos y roles, y que se mantengan actualizadas conforme a los cambios en las necesidades del sistema y los permisos de los usuarios.\n\nEstas acciones ayudarán al auditor a determinar si la organización está cumpliendo con los requisitos de gestión de cuentas establecidos en AC-2.",
+      "tokens_entrada": 181,
+      "tokens_salida": 404,
+      "t_primer_token_aprox_s": 0.03,
+      "t_total_s": 4.936,
+      "tokens_por_s": 83.09,
+      "vram_gpu_mb": 11831,
+      "vram_modelo_mb": 9942
+    },
+    {
+      "respuesta": "Un auditor debería revisar varios elementos para verificar que la organización cumple con la gestión de cuentas descrita en AC-2:\n\n1. **Documentación de Políticas**: Revisar la documentación oficial de la organización que define los tipos de cuentas permitidas y prohibidas, así como las políticas relacionadas con la creación, modificación, deshabilitación y eliminación de cuentas.\n\n2. **Asignación de Managers de Cuentas**: Verificar que cada cuenta tenga un manager asignado y que estos managers estén al tanto de las responsabilidades y obligaciones asociadas a su rol.\n\n3. **Registro de Actividades**: Revisar los registros de creación, modificación, deshabilitación y eliminación de cuentas para asegurarse de que estas acciones se realicen de acuerdo con las políticas establecidas.\n\n4. **Notificaciones**: Verificar que se notifiquen a los managers de cuentas cuando una cuenta ya no es necesaria, cuando un usuario es despedido o transferido, y cuando cambia el uso del sistema o la necesidad de conocimiento.\n\n5. **Monitoreo y Revisión**: Evaluar los procedimientos de monitoreo y revisión de cuentas para asegurarse de que se realicen con la frecuencia definida y que se documenten los resultados de estas revisiones.\n\n6. **Cumplimiento con Requisitos de Gestión de Cuentas**: Revisar que las cuentas cumplan con los requisitos de gestión de cuentas establecidos, incluyendo la pertenencia a grupos y roles, y que se mantengan actualizadas conforme a los cambios en las necesidades del sistema y los permisos de los usuarios.\n\nEstas acciones ayudarán al auditor a determinar si la organización está cumpliendo con los requisitos de gestión de cuentas establecidos en AC-2.",
+      "tokens_entrada": 181,
+      "tokens_salida": 404,
+      "t_primer_token_aprox_s": 0.028,
+      "t_total_s": 4.9,
+      "tokens_por_s": 82.99,
+      "vram_gpu_mb": 11831,
+      "vram_modelo_mb": 9942
+    }
+  ]
+}

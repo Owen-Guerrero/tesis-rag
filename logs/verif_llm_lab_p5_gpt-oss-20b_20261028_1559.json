@@ -1,0 +1,83 @@
+{
+  "fecha": "2026-10-28T15:59:17",
+  "maquina": {
+    "nombre": "lab_p5",
+    "rol": "ejecucion_final",
+    "equipo": "Lenovo ThinkStation P5 (laboratorio, Universidad de Lima)",
+    "cpu": "Intel Xeon W7 (24 núcleos / 48 hilos)",
+    "ram": "256 GB",
+    "id_equipo_lab": "I21328",
+    "gpu": "NVIDIA RTX 6000 Ada Generation",
+    "driver_nvidia": "596.51",
+    "vram_total_mb": 49140,
+    "sistema_operativo": "Windows 11 (10.0.26200)",
+    "python": "3.13.2",
+    "ollama": "ollama version is 0.40.12"
+  },
+  "modelo": {
+    "modelo": "gpt-oss:20b",
+    "familia": "gpt-oss",
+    "parametros": "20.9B",
+    "cuantizacion": "MXFP4",
+    "formato": "gguf"
+  },
+  "parametros_inferencia": {
+    "modelo": "gpt-oss:20b",
+    "temperatura": 0.0,
+    "top_p": 1.0,
+    "semilla": 42,
+    "num_ctx": 8192,
+    "max_tokens": 512,
+    "razonamiento": null
+  },
+  "vram_reposo_mb": 1453,
+  "carga_en_frio_s": 46.868,
+  "resumen": {
+    "t_total_s": {
+      "media": 3.095,
+      "desv": 0.001
+    },
+    "t_primer_token_s": {
+      "media": 0.024,
+      "desv": 0.002
+    },
+    "tokens_por_s": {
+      "media": 167.49,
+      "desv": 0.345
+    },
+    "vram_gpu_max_mb": 14359,
+    "vram_modelo_mb": 12265
+  },
+  "corridas": [
+    {
+      "respuesta": "**Revisión de auditoría para AC‑2 “Gestión de Cuentas”**\n\n| Área de control | Preguntas clave | Evidencia a revisar | Herramientas / documentos recomendados |\n|-----------------|-----------------|---------------------|----------------------------------------|\n| **Política y clasificación de cuentas** | • ¿Existe una política formal que defina los tipos de cuentas (usuario, servicio, administrador, etc.)?<br>• ¿Se distinguen cuentas permitidas de prohibidas?<br>• ¿Se establecen criterios de “need‑to‑know” y “least privilege”? | • Documento de política de gestión de cuentas.<br>• Matriz de clasificación de cuentas.<br>• Reglas de acceso (ACLs) y listas de control de acceso (ACL). | Política de seguridad, manual de operaciones, diagramas de flujo de acceso. |\n| **Asignación de gestores de cuentas** | • ¿Quiénes son los responsables de cada tipo de cuenta?<br>• ¿Existe un registro de asignación de gestores?<br>• ¿Se revisa periódicamente la asignación? | • Lista de gestores de cuentas.<br>• Registro de cambios de gestor.<br>• Reuniones de revisión de roles. | Hoja de cálculo de gestores, registros de cambios, actas de reuniones. |\n| **Condiciones de membresía de grupos/roles** | • ¿Se definen claramente los criterios para pertenecer a un grupo o rol?<br>• ¿Se revisan los miembros de cada grupo/rol? | • Políticas de membresía.<br>• Listado de miembros por grupo/rol.<br>",
+      "tokens_entrada": 236,
+      "tokens_salida": 512,
+      "t_primer_token_aprox_s": 0.023,
+      "t_total_s": 3.096,
+      "tokens_por_s": 167.5,
+      "vram_gpu_mb": 14359,
+      "vram_modelo_mb": 12265
+    },
+    {
+      "respuesta": "**Revisión de auditoría para AC‑2 “Gestión de Cuentas”**\n\n| Área de control | Preguntas clave | Evidencia a revisar | Herramientas / documentos recomendados |\n|-----------------|-----------------|---------------------|----------------------------------------|\n| **Política y clasificación de cuentas** | • ¿Existe una política formal que defina los tipos de cuentas (usuario, servicio, administrador, etc.)?<br>• ¿Se distinguen cuentas permitidas de prohibidas?<br>• ¿Se establecen criterios de “need‑to‑know” y “least privilege”? | • Documento de política de gestión de cuentas.<br>• Matriz de clasificación de cuentas.<br>• Reglas de acceso (ACLs) y listas de control de acceso (ACL). | Política de seguridad, manual de operaciones, diagramas de flujo de acceso. |\n| **Asignación de gestores de cuentas** | • ¿Quiénes son los responsables de cada tipo de cuenta?<br>• ¿Existe un registro de asignación de gestores?<br>• ¿Se revisa periódicamente la asignación? | • Lista de gestores de cuentas.<br>• Registro de cambios de gestor.<br>• Reuniones de revisión de roles. | Hoja de cálculo de gestores, registros de cambios, actas de reuniones. |\n| **Condiciones de membresía de grupos/roles** | • ¿Se definen claramente los criterios para pertenecer a un grupo o rol?<br>• ¿Se revisan los miembros de cada grupo/rol? | • Políticas de membresía.<br>• Listado de miembros por grupo/rol.<br>",
+      "tokens_entrada": 236,
+      "tokens_salida": 512,
+      "t_primer_token_aprox_s": 0.026,
+      "t_total_s": 3.095,
+      "tokens_por_s": 167.83,
+      "vram_gpu_mb": 14359,
+      "vram_modelo_mb": 12265
+    },
+    {
+      "respuesta": "**Revisión de auditoría para AC‑2 “Gestión de Cuentas”**\n\n| Área de control | Preguntas clave | Evidencia a revisar | Herramientas / documentos recomendados |\n|-----------------|-----------------|---------------------|----------------------------------------|\n| **Política y clasificación de cuentas** | • ¿Existe una política formal que defina los tipos de cuentas (usuario, servicio, administrador, etc.)?<br>• ¿Se distinguen cuentas permitidas de prohibidas?<br>• ¿Se establecen criterios de “need‑to‑know” y “least privilege”? | • Documento de política de gestión de cuentas.<br>• Matriz de clasificación de cuentas.<br>• Reglas de acceso (ACLs) y listas de control de acceso (ACL). | Política de seguridad, manual de operaciones, diagramas de flujo de acceso. |\n| **Asignación de gestores de cuentas** | • ¿Quiénes son los responsables de cada tipo de cuenta?<br>• ¿Existe un registro de asignación de gestores?<br>• ¿Se revisa periódicamente la asignación? | • Lista de gestores de cuentas.<br>• Registro de cambios de gestor.<br>• Reuniones de revisión de roles. | Hoja de cálculo de gestores, registros de cambios, actas de reuniones. |\n| **Condiciones de membresía de grupos/roles** | • ¿Se definen claramente los criterios para pertenecer a un grupo o rol?<br>• ¿Se revisan los miembros de cada grupo/rol? | • Políticas de membresía.<br>• Listado de miembros por grupo/rol.<br>",
+      "tokens_entrada": 236,
+      "tokens_salida": 512,
+      "t_primer_token_aprox_s": 0.024,
+      "t_total_s": 3.095,
+      "tokens_por_s": 167.14,
+      "vram_gpu_mb": 14359,
+      "vram_modelo_mb": 12265
+    }
+  ]
+}
