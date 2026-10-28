@@ -32,3 +32,36 @@ fragmentacion:
   max_tokens: 100
   tokenizador: "cl100k_base"
   encabezado: true        # cada hoja lleva "norma + id + título" para no perder el contexto
+
+# OE4: modelo de embeddings (servido por Ollama, igual que el LLM).
+# Debe ser MULTILINGÜE: las preguntas están en español y el corpus en inglés.
+embeddings:
+  modelo: "bge-m3"        # PROVISIONAL. Se fija tras la selección del OE4.
+  lote: 64                # hojas por llamada a Ollama
+
+# Candidatos del OE4 y el prefijo que cada uno exige según su ficha técnica.
+# Si un modelo pide un prefijo y no se le pone, recupera peor.
+candidatos_embeddings:
+  "bge-m3":
+    prefijo_consulta: ""
+    prefijo_documento: ""
+  "qwen3-embedding:0.6b":
+    prefijo_consulta: "Instruct: Given a question about a cybersecurity standard, retrieve the normative passages that answer the question\nQuery:"
+    prefijo_documento: ""
+  "embeddinggemma":
+    prefijo_consulta: "task: search result | query: "
+    prefijo_documento: "title: none | text: "
+  "snowflake-arctic-embed2":
+    prefijo_consulta: "query: "
+    prefijo_documento: ""
+
+# OE5/OE6: recuperación con el MISMO presupuesto de contexto para ambas arquitecturas.
+# Sarthi et al. (2024), árbol colapsado: se agregan nodos en orden de similitud
+# hasta el máximo de tokens. Naive RAG usa la misma regla sobre las hojas.
+recuperacion:
+  presupuesto_tokens: 2000
+  candidatos: 100         # nodos que se piden a ChromaDB antes de aplicar el presupuesto
+
+# Base vectorial local (NO se sube a GitHub: guarda texto ISO)
+almacen:
+  ruta: "chroma_db"

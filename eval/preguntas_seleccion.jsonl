@@ -1,0 +1,5 @@
+{"id": "S01", "pregunta": "Según NIST SP 800-53, ¿qué se exige para gestionar el ciclo de vida de las cuentas del sistema, es decir, su creación, habilitación, modificación, deshabilitación y eliminación?", "controles_esperados": ["NIST-AC-2"]}
+{"id": "S02", "pregunta": "Según NIST SP 800-53, ¿qué debe hacer el sistema cuando un usuario supera el número permitido de intentos consecutivos de inicio de sesión fallidos?", "controles_esperados": ["NIST-AC-7"]}
+{"id": "S03", "pregunta": "Según ISO/IEC 27002, ¿cómo debe gestionarse la información de autenticación, como las contraseñas, y qué se debe indicar a los usuarios sobre su manejo?", "controles_esperados": ["ISO27002-5.17", "ISO27001-A.5.17"]}
+{"id": "S04", "pregunta": "Según ISO/IEC 27002, ¿cómo deben asignarse, restringirse y gestionarse los derechos de acceso privilegiado?", "controles_esperados": ["ISO27002-8.2", "ISO27001-A.8.2"]}
+{"id": "S05", "pregunta": "Según OWASP Top 10:2025, ¿qué medidas se recomiendan para prevenir fallas de control de acceso en aplicaciones web?", "controles_esperados": ["OWASP-A01:2025"]}

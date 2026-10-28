@@ -1,8 +1,12 @@
+# Versiones fijas: la PC de desarrollo y la del laboratorio deben instalar exactamente lo mismo.
 # Etapa 1: LLM local
-ollama
+ollama==0.6.3
 pyyaml
 # OE1: extracción de ISO desde PDF
 pymupdf==2.0
 # OE1: fragmentación en hojas de 100 tokens (tokenizador de RAPTOR)
 tiktoken
-# En etapas siguientes se agregan chromadb, sentence-transformers, umap-learn, etc.
+# OE4/OE5: base vectorial local y cálculo de vectores
+chromadb==1.5.9
+numpy
+# En etapas siguientes se agregan umap-learn y scikit-learn (RAPTOR) y las métricas.
