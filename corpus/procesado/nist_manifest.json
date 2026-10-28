@@ -3,7 +3,7 @@
   "titulo": "Electronic (OSCAL) Version of NIST SP 800-53 Rev 5.2.0 Controls and SP 800-53A Rev 5.2.0 Assessment Procedures",
   "version_oscal": "5.2.0",
   "ultima_modificacion_nist": "2026-10-22T11:30:00.00000-00:00",
-  "fecha_extraccion": "2026-10-25T21:08:06",
+  "fecha_extraccion": "2026-10-28T16:23:45",
   "registros": 1014,
   "controles": 300,
   "mejoras": 714,

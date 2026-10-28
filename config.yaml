@@ -36,8 +36,8 @@ fragmentacion:
 # OE4: modelo de embeddings (servido por Ollama, igual que el LLM).
 # Debe ser MULTILINGÜE: las preguntas están en español y el corpus en inglés.
 embeddings:
-  modelo: "bge-m3"        # PROVISIONAL. Se fija tras la selección del OE4.
-  lote: 64                # hojas por llamada a Ollama
+  modelo: "qwen3-embedding:0.6b"   # Seleccionado en el OE4 (MRR 1,00; 5 preguntas reservadas, lab_p5)
+  lote: 64                	   # hojas por llamada a Ollama
 
 # Candidatos del OE4 y el prefijo que cada uno exige según su ficha técnica.
 # Si un modelo pide un prefijo y no se le pone, recupera peor.

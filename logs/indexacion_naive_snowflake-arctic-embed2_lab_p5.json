@@ -1,0 +1,24 @@
+{
+  "fecha": "2026-10-28T16:35:27",
+  "maquina": {
+    "nombre": "lab_p5",
+    "rol": "ejecucion_final",
+    "equipo": "Lenovo ThinkStation P5 (laboratorio, Universidad de Lima)",
+    "cpu": "Intel Xeon W7 (24 núcleos / 48 hilos)",
+    "ram": "256 GB",
+    "id_equipo_lab": "I21328",
+    "gpu": "NVIDIA RTX 6000 Ada Generation",
+    "driver_nvidia": "596.51",
+    "vram_total_mb": 49140,
+    "sistema_operativo": "Windows 11",
+    "python": "3.13.2"
+  },
+  "coleccion": "naive-snowflake-arctic-embed2",
+  "modelo_embeddings": "snowflake-arctic-embed2",
+  "digest_modelo": "5de93a84837d0ff00da872e90830df5d973f616cbf1e5c198731ab19dd7b776b",
+  "dimension": 1024,
+  "nodos_indexados": 4253,
+  "t_embeddings_s": 63.94,
+  "t_total_s": 68.93,
+  "hojas_por_s": 66.5
+}

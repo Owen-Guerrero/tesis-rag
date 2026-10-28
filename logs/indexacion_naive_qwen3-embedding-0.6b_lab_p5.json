@@ -1,0 +1,24 @@
+{
+  "fecha": "2026-10-28T16:30:42",
+  "maquina": {
+    "nombre": "lab_p5",
+    "rol": "ejecucion_final",
+    "equipo": "Lenovo ThinkStation P5 (laboratorio, Universidad de Lima)",
+    "cpu": "Intel Xeon W7 (24 núcleos / 48 hilos)",
+    "ram": "256 GB",
+    "id_equipo_lab": "I21328",
+    "gpu": "NVIDIA RTX 6000 Ada Generation",
+    "driver_nvidia": "596.51",
+    "vram_total_mb": 49140,
+    "sistema_operativo": "Windows 11",
+    "python": "3.13.2"
+  },
+  "coleccion": "naive-qwen3-embedding-0.6b",
+  "modelo_embeddings": "qwen3-embedding:0.6b",
+  "digest_modelo": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+  "dimension": 1024,
+  "nodos_indexados": 4253,
+  "t_embeddings_s": 78.65,
+  "t_total_s": 83.31,
+  "hojas_por_s": 54.1
+}
