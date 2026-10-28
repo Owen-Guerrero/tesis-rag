@@ -1,0 +1,44 @@
+{
+  "fecha": "2026-10-28T15:45:37",
+  "parametros": {
+    "max_tokens": 100,
+    "tokenizador": "cl100k_base",
+    "encabezado": true
+  },
+  "fuentes": [
+    "nist_sp800-53.jsonl",
+    "owasp_top10_2025.jsonl",
+    "iso27001_2022.jsonl",
+    "iso27002_2022.jsonl"
+  ],
+  "hojas_totales": 4253,
+  "registros_totales": 1328,
+  "hojas_que_exceden_el_limite": 0,
+  "por_norma": {
+    "NIST SP 800-53": {
+      "hojas": 2908,
+      "tokens_total": 226700,
+      "tokens_media": 78.0,
+      "tokens_max": 99
+    },
+    "OWASP Top 10": {
+      "hojas": 261,
+      "tokens_total": 21180,
+      "tokens_media": 81.1,
+      "tokens_max": 99
+    },
+    "ISO/IEC 27001": {
+      "hojas": 147,
+      "tokens_total": 8260,
+      "tokens_media": 56.2,
+      "tokens_max": 99
+    },
+    "ISO/IEC 27002": {
+      "hojas": 937,
+      "tokens_total": 77664,
+      "tokens_media": 82.9,
+      "tokens_max": 99
+    }
+  },
+  "sha256_hojas": "b5a5207545e8fef0ffcd8ff3e009e2eb234b76fbaf9734afc1a07b749276082e"
+}

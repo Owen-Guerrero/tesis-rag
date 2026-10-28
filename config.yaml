@@ -24,3 +24,11 @@ candidatos_llm:
 
 verificacion:
   repeticiones: 3         # Jovanovski et al. (2026) repiten cada medición 3 veces
+
+# OE1/OE5/OE6: fragmentación en "hojas" (las MISMAS para naive RAG y RAPTOR).
+# Sarthi et al. (2024): fragmentos de 100 tokens sin cortar oraciones,
+# contados con el tokenizador cl100k_base (tiktoken), como en el código oficial de RAPTOR.
+fragmentacion:
+  max_tokens: 100
+  tokenizador: "cl100k_base"
+  encabezado: true        # cada hoja lleva "norma + id + título" para no perder el contexto

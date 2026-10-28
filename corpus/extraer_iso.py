@@ -68,6 +68,16 @@ ATRIBUTOS = {
 }
 
 
+# Nombres oficiales (en inglés) de cada atributo, para que el texto del corpus quede en inglés
+ETIQUETAS_EN = {
+    "tipo_control": "Control type",
+    "propiedades_seguridad": "Information security properties",
+    "conceptos_ciberseguridad": "Cybersecurity concepts",
+    "capacidades_operativas": "Operational capabilities",
+    "dominios_seguridad": "Security domains",
+}
+
+
 # ---------------------------------------------------------------- utilidades
 def sha256(ruta: Path) -> str:
     return hashlib.sha256(ruta.read_bytes()).hexdigest()
@@ -288,7 +298,8 @@ def extraer_27002() -> list:
         atributos = {k: [e for e in etiquetas if e in vocab] for k, vocab in ATRIBUTOS.items()}
         tema = c["numero"].split(".")[0]
         partes = [f"ISO/IEC 27002:2022 — {tema} {TEMAS_27002[tema]} — {c['numero']} {c['titulo']}",
-                  "Attributes: " + "; ".join(f"{k}: {', '.join(v)}" for k, v in atributos.items() if v)]
+                  "Attributes: " + "; ".join(f"{ETIQUETAS_EN[k]}: {', '.join(v)}"
+                                             for k, v in atributos.items() if v) + "."]
         for nombre in ("Control", "Purpose", "Guidance", "Other information"):
             if c["secciones"].get(nombre):
                 partes.append(f"{nombre}:\n" + "\n".join(c["secciones"][nombre]))
