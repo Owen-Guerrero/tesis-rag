@@ -1,0 +1,81 @@
+{
+  "fecha": "2026-10-29T16:08:41",
+  "maquina": {
+    "nombre": "lab_p5",
+    "rol": "ejecucion_final",
+    "equipo": "Lenovo ThinkStation P5 (laboratorio, Universidad de Lima)",
+    "cpu": "Intel Xeon W7 (24 núcleos / 48 hilos)",
+    "ram": "256 GB",
+    "id_equipo_lab": "I21328",
+    "gpu": "NVIDIA RTX 6000 Ada Generation",
+    "driver_nvidia": "596.51",
+    "vram_total_mb": 49140,
+    "sistema_operativo": "Windows 11",
+    "python": "3.13.2"
+  },
+  "prueba_con_hojas": null,
+  "coleccion": "raptor-qwen3-embedding-0.6b-gpt-oss-20b",
+  "modelo_embeddings": "qwen3-embedding:0.6b",
+  "digest_embeddings": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+  "modelo_llm": "gpt-oss:20b",
+  "digest_llm": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+  "parametros": {
+    "dimension_reducida": 10,
+    "umbral_gmm": 0.1,
+    "max_grupos": 50,
+    "max_tokens_grupo": 3500,
+    "max_capas": 5,
+    "vecinos_locales": 10,
+    "semilla": 224,
+    "max_tokens_resumen": 800,
+    "prompt_resumen": "Write a summary of the following, including as many key details as possible. Keep the names of the standards and the control identifiers (for example AC-2, IA-2(1), 5.15, A.8.2, A01:2025). Write a single paragraph of at most 150 words, with no introduction, headings or bullet points.\n\n{contexto}",
+    "sistema_resumen": "You are a Summarizing Text Portal",
+    "max_citas_resumen": 8
+  },
+  "hojas": 4253,
+  "resumenes": 613,
+  "nodos_totales": 4866,
+  "capas": [
+    {
+      "capa": 1,
+      "nodos_entrada": 4253,
+      "resumenes": 509,
+      "tokens_media_resumen": 199.9,
+      "hijos_media": 8.4
+    },
+    {
+      "capa": 2,
+      "nodos_entrada": 509,
+      "resumenes": 81,
+      "tokens_media_resumen": 502.0,
+      "hijos_media": 6.3
+    },
+    {
+      "capa": 3,
+      "nodos_entrada": 81,
+      "resumenes": 18,
+      "tokens_media_resumen": 619.7,
+      "hijos_media": 4.5
+    },
+    {
+      "capa": 4,
+      "nodos_entrada": 18,
+      "resumenes": 5,
+      "tokens_media_resumen": 777.2,
+      "hijos_media": 3.6
+    }
+  ],
+  "llamadas_llm": 613,
+  "resumenes_cortados_por_tope": 28,
+  "resumenes_vacios_descartados": 0,
+  "razonamiento": "low",
+  "resumenes_desde_cache": 0,
+  "tokens_entrada_llm": 584061,
+  "tokens_salida_llm": 168104,
+  "t_agrupamiento_s": 215.3,
+  "t_resumenes_s": 1158.9,
+  "t_embeddings_resumenes_s": 10.4,
+  "t_total_s": 1384.6,
+  "vram_max_mb": 19354,
+  "sha256_arbol": "c47c1d4be2daae04aaa9405b2c2e4b55a404e98ea040c2155a70e3bf9cf217f3"
+}

@@ -1,0 +1,6 @@
+modelo_llm,preguntas,citas_en_contexto,controles_esperados_citados,respuestas_sin_ninguna_cita,respuestas_vacias,respuestas_cortadas_por_tope,t_generacion_media_s,tokens_por_s_medio,tokens_salida_medio,archivo
+gpt-oss:20b (low),5,1.0,0.8,0,0,0,2.56,161.5,357.0,naive__qwen3-embedding-0.6b__gpt-oss-20b-think-low__lab_p5__20261029_1536.jsonl
+gpt-oss:20b,5,1.0,0.2,4,4,5,3.46,164.1,512,naive__qwen3-embedding-0.6b__gpt-oss-20b__lab_p5__20261029_1522.jsonl
+llama3.1:8b,5,1.0,0.5,2,0,1,2.93,137.6,350.0,naive__qwen3-embedding-0.6b__llama3.1-8b__lab_p5__20261029_1520.jsonl
+qwen2.5:14b,5,1.0,0.8,0,0,1,5.51,77.1,364.0,naive__qwen3-embedding-0.6b__qwen2.5-14b__lab_p5__20261029_1521.jsonl
+qwen2.5:32b,5,1.0,0.8,0,0,1,12.47,38.2,410.0,naive__qwen3-embedding-0.6b__qwen2.5-32b__lab_p5__20261029_1524.jsonl
