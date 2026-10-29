@@ -1,0 +1,162 @@
+{
+ "R01": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P05"
+ },
+ "R02": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P03"
+ },
+ "R03": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P11"
+ },
+ "R04": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P17"
+ },
+ "R05": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P08"
+ },
+ "R06": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P19"
+ },
+ "R07": {
+  "arquitectura": "naive",
+  "pregunta_id": "P05"
+ },
+ "R08": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P06"
+ },
+ "R09": {
+  "arquitectura": "naive",
+  "pregunta_id": "P14"
+ },
+ "R10": {
+  "arquitectura": "naive",
+  "pregunta_id": "P02"
+ },
+ "R11": {
+  "arquitectura": "naive",
+  "pregunta_id": "P17"
+ },
+ "R12": {
+  "arquitectura": "naive",
+  "pregunta_id": "P19"
+ },
+ "R13": {
+  "arquitectura": "naive",
+  "pregunta_id": "P18"
+ },
+ "R14": {
+  "arquitectura": "naive",
+  "pregunta_id": "P06"
+ },
+ "R15": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P04"
+ },
+ "R16": {
+  "arquitectura": "naive",
+  "pregunta_id": "P12"
+ },
+ "R17": {
+  "arquitectura": "naive",
+  "pregunta_id": "P09"
+ },
+ "R18": {
+  "arquitectura": "naive",
+  "pregunta_id": "P13"
+ },
+ "R19": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P16"
+ },
+ "R20": {
+  "arquitectura": "naive",
+  "pregunta_id": "P11"
+ },
+ "R21": {
+  "arquitectura": "naive",
+  "pregunta_id": "P16"
+ },
+ "R22": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P02"
+ },
+ "R23": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P10"
+ },
+ "R24": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P15"
+ },
+ "R25": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P14"
+ },
+ "R26": {
+  "arquitectura": "naive",
+  "pregunta_id": "P10"
+ },
+ "R27": {
+  "arquitectura": "naive",
+  "pregunta_id": "P04"
+ },
+ "R28": {
+  "arquitectura": "naive",
+  "pregunta_id": "P03"
+ },
+ "R29": {
+  "arquitectura": "naive",
+  "pregunta_id": "P20"
+ },
+ "R30": {
+  "arquitectura": "naive",
+  "pregunta_id": "P01"
+ },
+ "R31": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P20"
+ },
+ "R32": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P09"
+ },
+ "R33": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P12"
+ },
+ "R34": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P07"
+ },
+ "R35": {
+  "arquitectura": "naive",
+  "pregunta_id": "P15"
+ },
+ "R36": {
+  "arquitectura": "naive",
+  "pregunta_id": "P07"
+ },
+ "R37": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P18"
+ },
+ "R38": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P13"
+ },
+ "R39": {
+  "arquitectura": "raptor",
+  "pregunta_id": "P01"
+ },
+ "R40": {
+  "arquitectura": "naive",
+  "pregunta_id": "P08"
+ }
+}

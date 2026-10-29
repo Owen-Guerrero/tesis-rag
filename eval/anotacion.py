@@ -34,12 +34,14 @@ CLAVE = ruta("eval/anotacion_clave.json")
 OPCIONES = {"correccion": ["correcta", "parcial", "incorrecta"], "fidelidad": ["si", "no"]}
 
 
-def ultima(arq: str, maquina: str) -> dict:
+def ultima(arq: str, maquina: str, ids: set) -> dict:
+    """Primera corrida del PILOTO (se ignoran archivos de otras preguntas, p. ej. las S01-S05 del OE2)."""
     llm = slug(config()["llm"]["modelo"])
-    archivos = sorted(ruta("resultados").glob(f"{arq}__*__{llm}__{maquina}__*.jsonl"))
-    if not archivos:
-        raise SystemExit(f"No hay resultados de {arq} en resultados/.")
-    return {x["id"]: x for x in leer_jsonl(archivos[0]) if "pregunta" in x}   # 1.ª corrida
+    for archivo in sorted(ruta("resultados").glob(f"{arq}__*__{llm}__{maquina}__*.jsonl")):
+        filas = {x["id"]: x for x in leer_jsonl(archivo) if "pregunta" in x}
+        if ids <= set(filas):
+            return filas
+    raise SystemExit(f"No hay resultados del piloto para {arq} en resultados/.")
 
 
 def preparar(maquina: str) -> None:
@@ -50,7 +52,7 @@ def preparar(maquina: str) -> None:
     preguntas = {q["id"]: q for q in leer_jsonl(ruta("eval/preguntas_piloto.jsonl"))}
     items = []
     for arq in ("naive", "raptor"):
-        res = ultima(arq, maquina)
+        res = ultima(arq, maquina, set(preguntas))
         for i in sorted(preguntas):
             items.append({"arquitectura": arq, "pregunta_id": i, "respuesta": res[i].get("respuesta", "")})
     random.Random(2026).shuffle(items)
