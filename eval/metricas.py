@@ -46,20 +46,37 @@ def ndcg_at_k(ranking: list[list[str]], esperados: set[str], k: int, total_relev
 # ---------------------------------------------------------------- citas en la respuesta
 import re
 
+FAMILIAS_NIST = ("AC|AT|AU|CA|CM|CP|IA|IR|MA|MP|PE|PL|PM|PS|PT|RA|SA|SC|SI|SR")
+_CONECTOR = r"(?:[\s,:;(]|\bcontrol\b|\bcláusula\b|\bapartado\b|\bsección\b|\bsection\b|\bclause\b)*"
 _PATRONES_CITA = [
-    ("NIST", re.compile(r"\bNIST(?:\s+SP\s+800-53)?(?:\s+Rev\.\s*5)?\s+([A-Z]{2}-\d+)(?:\(\d+\))?")),
-    ("ISO27002", re.compile(r"\bISO(?:/IEC)?\s*27002(?::2022)?\s+(\d+\.\d+(?:\.\d+)?)")),
-    ("ISO27001", re.compile(r"\bISO(?:/IEC)?\s*27001(?::2022)?\s+(A\.\d+\.\d+|\d+(?:\.\d+)*)")),
-    ("OWASP", re.compile(r"\bOWASP(?:\s+Top\s+10(?::2025)?)?\s+(A\d{2})(?::2025)?")),
+    # NIST: el código de familia (AC-2, IA-5(1)) es único aunque no diga "NIST"
+    ("NIST", re.compile(rf"\b((?:{FAMILIAS_NIST})-\d+)(?:\s*\(\d+\))?")),
+    # ISO: el número solo no basta (5.17 existe en 27001 y 27002): debe nombrar la norma, antes o después
+    ("ISO27002", re.compile(rf"\bISO(?:/IEC)?\s*27002(?::2022)?{_CONECTOR}(\d+\.\d+(?:\.\d+)?)")),
+    ("ISO27002", re.compile(r"\b(?:control|cláusula|apartado)?\s*(\d+\.\d+)\s+(?:de\s+(?:la\s+)?(?:norma\s+)?|of\s+)ISO(?:/IEC)?\s*27002")),
+    ("ISO27001", re.compile(rf"\bISO(?:/IEC)?\s*27001(?::2022)?{_CONECTOR}(A\.\d+\.\d+|\d+(?:\.\d+)*)")),
+    ("ISO27001", re.compile(r"\b(A\.\d+\.\d+)\b")),   # "A.5.15" solo existe en el Anexo A de 27001
+    # OWASP: "A01:2025" es único; "A01" suelto solo si dice OWASP
+    ("OWASP", re.compile(r"\b(A\d{2}):2025\b")),
+    ("OWASP", re.compile(r"\bOWASP(?:\s+Top\s+10(?::2025)?)?[\s,:–-]*(A\d{2})\b")),
 ]
+# Guiones y espacios "raros" que algunos modelos escriben (p. ej. gpt-oss usa U+2011 en "AC‑2")
+_NORMALIZAR = str.maketrans({"\u2010": "-", "\u2011": "-", "\u2012": "-", "\u2013": "-", "\u2014": "-",
+                             "\u2212": "-", "\u00a0": " ", "\u202f": " ", "\u2009": " "})
 
 
 def extraer_citas(texto: str) -> set:
     """Controles citados en una respuesta, en formato de control base (NIST-AC-2, ISO27002-5.15...).
-    Reconoce la cita con o sin corchetes: "[NIST IA-2(1)]" y "NIST IA-2(1) exige..." cuentan igual."""
+
+    Reconoce la cita con o sin corchetes y con o sin el nombre de la norma cuando el
+    identificador no es ambiguo: "[NIST IA-2(1)]", "IA-2(1) exige...", "A.5.17" y
+    "A07:2025" cuentan. Los números de ISO (5.17) solo cuentan si nombran la norma.
+    La misma regla se aplica a todos los modelos y a las dos arquitecturas.
+    """
+    texto = (texto or "").translate(_NORMALIZAR)
     citas = set()
     for prefijo, patron in _PATRONES_CITA:
-        for m in patron.finditer(texto or ""):
+        for m in patron.finditer(texto):
             ident = m.group(1).rstrip(".")
             citas.add(f"{prefijo}-{ident}:2025" if prefijo == "OWASP" else f"{prefijo}-{ident}")
     return citas
