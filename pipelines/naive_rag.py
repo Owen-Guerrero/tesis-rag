@@ -64,10 +64,14 @@ def main(arquitectura: str = "naive") -> None:
     p.add_argument("--solo-recuperacion", action="store_true", help="no llama al LLM (OE4)")
     p.add_argument("--coleccion", help="otra colección (p. ej. la del árbol de prueba)")
     p.add_argument("--modelo-llm", help="otro LLM (OE2: comparar candidatos con la misma recuperación)")
+    p.add_argument("--razonamiento", choices=["low", "medium", "high"],
+                   help="nivel de razonamiento para modelos que lo tienen (gpt-oss)")
     a = p.parse_args()
 
     modelo_emb = a.modelo_emb or modelo_embeddings()
     modelo_llm = a.modelo_llm or config()["llm"]["modelo"]
+    if a.razonamiento:
+        config()["llm"]["razonamiento"] = a.razonamiento   # solo para esta ejecución
     col = abrir_coleccion(a.coleccion or nombre_coleccion(arquitectura, modelo_emb))
     print(f"Arquitectura: {arquitectura} | colección: {col.name} ({col.count()} nodos)")
 
@@ -95,6 +99,7 @@ def main(arquitectura: str = "naive") -> None:
         r = responder(col, q["pregunta"], modelo_emb, a.solo_recuperacion, modelo_llm)
         fila = {"id": q["id"], "pregunta": q["pregunta"], "arquitectura": arquitectura,
                 "modelo_embeddings": modelo_emb, "modelo_llm": None if a.solo_recuperacion else modelo_llm,
+                "razonamiento": config()["llm"].get("razonamiento"),
                 **r}
         esperados = set(q.get("controles_esperados", []))
         if esperados:
@@ -118,7 +123,7 @@ def main(arquitectura: str = "naive") -> None:
         print(f"{q['id']}: {len(r['recuperados'])} nodos ({resumenes} resúmenes), {r['t_total_s']} s{extra}")
 
     fecha = datetime.now().strftime("%Y%m%d_%H%M")
-    llm = "sin-llm" if a.solo_recuperacion else slug(modelo_llm)
+    llm = "sin-llm" if a.solo_recuperacion else slug(modelo_llm) + (f"-think-{a.razonamiento}" if a.razonamiento else "")
     salida = ruta("resultados") / f"{arquitectura}__{slug(modelo_emb)}__{llm}__{a.maquina}__{fecha}.jsonl"
     escribir_jsonl(salida, [{"maquina": info_maquina(a.maquina), "fecha": fecha}] + filas)
     if rr:

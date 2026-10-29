@@ -55,7 +55,8 @@ def main() -> None:
         filas = [f for f in leer_jsonl(archivo) if "pregunta" in f]
         if not filas or not filas[0].get("modelo_llm"):
             continue
-        modelo = filas[0]["modelo_llm"]
+        modelo = filas[0]["modelo_llm"] + (f" ({filas[0]['razonamiento']})" if filas[0].get("razonamiento") else "")
+        vacias = sum(not (f.get("respuesta") or "").strip() for f in filas)
         cc, ce, sin_cita, detalle = [], [], 0, []
         for f in filas:
             contexto = {c for n in f["recuperados"] for c in n["controles"]}
@@ -75,6 +76,8 @@ def main() -> None:
             "citas_en_contexto": round(statistics.mean(cc), 3) if cc else None,
             "controles_esperados_citados": round(statistics.mean(ce), 3) if ce else None,
             "respuestas_sin_ninguna_cita": sin_cita,
+            "respuestas_vacias": vacias,
+            "respuestas_cortadas_por_tope": sum(f.get("fin") == "length" for f in filas),
             "t_generacion_media_s": round(statistics.mean(f["t_generacion_s"] for f in filas), 2),
             "tokens_por_s_medio": round(statistics.mean(f["tokens_por_s"] for f in filas if f.get("tokens_por_s")), 1),
             "tokens_salida_medio": round(statistics.mean(f["tokens_salida"] for f in filas), 0),
@@ -83,6 +86,7 @@ def main() -> None:
         tabla.append(fila)
         print(f"{modelo:<14} citas en contexto {fila['citas_en_contexto']} | esperados citados "
               f"{fila['controles_esperados_citados']} | sin cita {sin_cita}/{len(filas)} | "
+              f"VACÍAS {vacias}/{len(filas)} | cortadas {fila['respuestas_cortadas_por_tope']} | "
               f"{fila['t_generacion_media_s']} s | {fila['tokens_por_s_medio']} tok/s")
         print("               " + " | ".join(detalle))
 
