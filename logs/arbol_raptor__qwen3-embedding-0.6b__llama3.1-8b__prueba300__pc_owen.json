@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-10-28T19:07:06",
+  "fecha": "2026-10-28T19:17:12",
   "maquina": {
     "nombre": "pc_owen",
     "rol": "desarrollo",
@@ -46,19 +46,19 @@
       "capa": 2,
       "nodos_entrada": 62,
       "resumenes": 11,
-      "tokens_media_resumen": 228.1,
+      "tokens_media_resumen": 226.6,
       "hijos_media": 5.6
     }
   ],
-  "llamadas_llm": 2,
+  "llamadas_llm": 1,
   "resumenes_cortados_por_tope": 1,
-  "resumenes_desde_cache": 71,
-  "tokens_entrada_llm": 2420,
-  "tokens_salida_llm": 621,
-  "t_agrupamiento_s": 19.6,
-  "t_resumenes_s": 10.7,
-  "t_embeddings_resumenes_s": 1.6,
-  "t_total_s": 31.9,
-  "vram_max_mb": 8062,
-  "sha256_arbol": "d89433044f144b3f4290df4fac8c6da22a6f6855a0debca76dc976cdc986171b"
+  "resumenes_desde_cache": 72,
+  "tokens_entrada_llm": 1485,
+  "tokens_salida_llm": 400,
+  "t_agrupamiento_s": 17.6,
+  "t_resumenes_s": 7.5,
+  "t_embeddings_resumenes_s": 2.7,
+  "t_total_s": 27.9,
+  "vram_max_mb": 8068,
+  "sha256_arbol": "0819952de10abf5eb7a5d664244e057933e75302aae7b56297f22d7e0a127269"
 }

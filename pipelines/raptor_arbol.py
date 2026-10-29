@@ -139,6 +139,13 @@ def limpiar(texto: str) -> str:
     return INTRO.sub("", texto.strip(), count=1).strip()
 
 
+def recortar(texto: str) -> str:
+    """Si el resumen se cortó por el tope de tokens, se deja hasta su última oración completa
+    (decisión propia: ningún nodo del árbol queda terminando a mitad de una oración)."""
+    fin = max(texto.rfind(". "), texto.rfind(".\n"), texto.rfind("."))
+    return texto[:fin + 1] if fin > 0 else texto
+
+
 def citas_de(conteo: Counter) -> list:
     return [cita_de_control(c) for c, _ in conteo.most_common(CFG["max_citas_resumen"])]
 
@@ -190,16 +197,20 @@ def construir(maquina: str, limite: int = None) -> None:
             for k, g in enumerate(grupos):
                 hijos = [nodos[i] for i in g]
                 ck = clave([h["id"] for h in hijos], llm)
-                if ck in cache and not cache[ck].get("cortado"):   # los cortados se rehacen
-                    texto = cache[ck]["texto"]
-                    cortados += cache[ck].get("cortado", False)
+                guardado = cache.get(ck)
+                if guardado and (not guardado.get("cortado") or guardado.get("recortado")):
+                    texto = guardado["texto"]
+                    cortados += guardado.get("cortado", False)
                 else:
                     r = resumir([h["texto"] for h in hijos], llm)
                     texto = limpiar(r["respuesta"])
+                    if r.get("fin") == "length":
+                        texto = recortar(texto)
                     tokens_in += r["tokens_entrada"]
                     tokens_out += r["tokens_salida"]
                     llamadas += 1
-                    cache[ck] = {"clave": ck, "texto": texto, "cortado": r.get("fin") == "length"}
+                    cache[ck] = {"clave": ck, "texto": texto, "cortado": r.get("fin") == "length",
+                                 "recortado": r.get("fin") == "length"}
                     cortados += cache[ck]["cortado"]
                     fcache.write(json.dumps(cache[ck], ensure_ascii=False) + "\n")
                     fcache.flush()
@@ -279,8 +290,8 @@ def construir(maquina: str, limite: int = None) -> None:
 
     print(f"\nÁrbol listo: {len(hojas)} hojas + {registro['resumenes']} resúmenes en "
           f"{len(capas)} capas | {registro['t_total_s']} s | colección {nombre_col}")
-    print(f"Resúmenes cortados por el tope de {CFG['max_tokens_resumen']} tokens: {cortados} "
-          f"(debe ser 0 o casi 0)")
+    print(f"Resúmenes que llegaron al tope de {CFG['max_tokens_resumen']} tokens: {cortados} "
+          f"(recortados hasta su última oración completa)")
     for c in capas:
         print(f"  capa {c['capa']}: {c['resumenes']} resúmenes "
               f"(media {c['tokens_media_resumen']} tokens, {c['hijos_media']} hijos)")
