@@ -7,8 +7,9 @@ para que todos los modelos se midan con exactamente la misma regla.
 No vuelve a llamar a ningún LLM.
 
 Uso (desde la raíz del repo):
-  python eval\\comparar_llm.py resultados\\naive__qwen3-embedding-0.6b__*__lab_p5__20261029_*.jsonl
-  python eval\\comparar_llm.py <archivos> --ver S04      (muestra la respuesta de cada modelo a S04)
+  python eval\\comparar_llm.py                      (todos los resultados naive con LLM de lab_p5)
+  python eval\\comparar_llm.py --ver S04            (además muestra la respuesta de cada modelo a S04)
+  python eval\\comparar_llm.py --maquina pc_owen    (los de otra máquina)
 
 Guarda la tabla en logs/comparacion_llm_calidad.csv.
 """
@@ -35,10 +36,18 @@ def esperados_por_id() -> dict:
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("archivos", nargs="+")
+    p.add_argument("archivos", nargs="*", help="(opcional) archivos de resultados")
+    p.add_argument("--maquina", default="lab_p5")
     p.add_argument("--ver", help="id de pregunta cuya respuesta se muestra para cada modelo")
     a = p.parse_args()
-    archivos = sorted({f for patron in a.archivos for f in glob.glob(patron)})
+    if a.archivos:
+        archivos = sorted({f for patron in a.archivos for f in glob.glob(patron)})
+    else:
+        archivos = sorted(str(f) for f in ruta("resultados").glob(f"naive__*__{a.maquina}__*.jsonl")
+                          if "__sin-llm__" not in f.name)
+    if not archivos:
+        raise SystemExit("No encontré archivos de resultados con LLM en resultados/.")
+    print(f"Archivos: {len(archivos)}")
     esperados = esperados_por_id()
 
     tabla = []
