@@ -14,3 +14,4 @@ corpus/procesado/iso27002_2022.jsonl
 # Archivos derivados que incluyen texto de ISO (hojas, árbol RAPTOR)
 corpus/procesado/hojas*.jsonl
 corpus/procesado/arbol*
+eval/paquete_validacion*
