@@ -1,0 +1,64 @@
+{
+  "fecha": "2026-10-28T19:07:06",
+  "maquina": {
+    "nombre": "pc_owen",
+    "rol": "desarrollo",
+    "equipo": "PC personal",
+    "cpu": "AMD Ryzen 7 5700X (8 núcleos / 16 hilos)",
+    "ram": "16 GB DDR4 2400 MHz",
+    "gpu": "NVIDIA GeForce RTX 3060",
+    "driver_nvidia": "617.42",
+    "vram_total_mb": 12288,
+    "sistema_operativo": "Windows 11",
+    "python": "3.13.4"
+  },
+  "prueba_con_hojas": 300,
+  "coleccion": "raptor-qwen3-embedding-0.6b-llama3.1-8b-prueba300",
+  "modelo_embeddings": "qwen3-embedding:0.6b",
+  "digest_embeddings": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+  "modelo_llm": "llama3.1:8b",
+  "digest_llm": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+  "parametros": {
+    "dimension_reducida": 10,
+    "umbral_gmm": 0.1,
+    "max_grupos": 50,
+    "max_tokens_grupo": 3500,
+    "max_capas": 5,
+    "vecinos_locales": 10,
+    "semilla": 224,
+    "max_tokens_resumen": 400,
+    "prompt_resumen": "Write a summary of the following, including as many key details as possible. Keep the names of the standards and the control identifiers (for example AC-2, IA-2(1), 5.15, A.8.2, A01:2025). Write a single paragraph of at most 150 words, with no introduction, headings or bullet points.\n\n{contexto}",
+    "sistema_resumen": "You are a Summarizing Text Portal",
+    "max_citas_resumen": 8
+  },
+  "hojas": 300,
+  "resumenes": 73,
+  "nodos_totales": 373,
+  "capas": [
+    {
+      "capa": 1,
+      "nodos_entrada": 300,
+      "resumenes": 62,
+      "tokens_media_resumen": 147.9,
+      "hijos_media": 4.8
+    },
+    {
+      "capa": 2,
+      "nodos_entrada": 62,
+      "resumenes": 11,
+      "tokens_media_resumen": 228.1,
+      "hijos_media": 5.6
+    }
+  ],
+  "llamadas_llm": 2,
+  "resumenes_cortados_por_tope": 1,
+  "resumenes_desde_cache": 71,
+  "tokens_entrada_llm": 2420,
+  "tokens_salida_llm": 621,
+  "t_agrupamiento_s": 19.6,
+  "t_resumenes_s": 10.7,
+  "t_embeddings_resumenes_s": 1.6,
+  "t_total_s": 31.9,
+  "vram_max_mb": 8062,
+  "sha256_arbol": "d89433044f144b3f4290df4fac8c6da22a6f6855a0debca76dc976cdc986171b"
+}

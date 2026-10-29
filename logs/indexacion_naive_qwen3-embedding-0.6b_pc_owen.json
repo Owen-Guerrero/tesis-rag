@@ -1,0 +1,23 @@
+{
+  "fecha": "2026-10-28T17:08:15",
+  "maquina": {
+    "nombre": "pc_owen",
+    "rol": "desarrollo",
+    "equipo": "PC personal",
+    "cpu": "AMD Ryzen 7 5700X (8 núcleos / 16 hilos)",
+    "ram": "16 GB DDR4 2400 MHz",
+    "gpu": "NVIDIA GeForce RTX 3060",
+    "driver_nvidia": "617.42",
+    "vram_total_mb": 12288,
+    "sistema_operativo": "Windows 11",
+    "python": "3.13.4"
+  },
+  "coleccion": "naive-qwen3-embedding-0.6b",
+  "modelo_embeddings": "qwen3-embedding:0.6b",
+  "digest_modelo": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+  "dimension": 1024,
+  "nodos_indexados": 4253,
+  "t_embeddings_s": 90.83,
+  "t_total_s": 94.16,
+  "hojas_por_s": 46.8
+}

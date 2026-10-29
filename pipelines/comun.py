@@ -90,6 +90,24 @@ def cita(h: dict) -> str:
     return f"[{PREFIJO_CITA[h['estandar']]} {h['id_control']}]"
 
 
+def cita_de_control(control: str) -> str:
+    """NIST-AC-2 -> [NIST AC-2]; ISO27002-5.15 -> [ISO 27002 5.15] (citas de los resúmenes de RAPTOR)."""
+    prefijo, ident = control.split("-", 1)
+    norma = {v: PREFIJO_CITA[k] for k, v in PREFIJO_NORMA.items()}[prefijo]
+    return f"[{norma} {ident}]"
+
+
+@lru_cache(maxsize=1)
+def _codificador():
+    import tiktoken
+    return tiktoken.get_encoding(config()["fragmentacion"]["tokenizador"])
+
+
+def contar_tokens(texto: str) -> int:
+    """Mismo tokenizador que las hojas (cl100k_base): el presupuesto se mide igual para todo nodo."""
+    return len(_codificador().encode(texto))
+
+
 # ---------------------------------------------------------------- embeddings
 def modelo_embeddings() -> str:
     return config()["embeddings"]["modelo"]
@@ -138,8 +156,15 @@ def cliente_chroma():
 
 
 def nombre_coleccion(arquitectura: str, modelo: str = None) -> str:
-    """Una colección por arquitectura y modelo de embeddings: p. ej. naive-bge-m3, raptor-bge-m3."""
-    return f"{arquitectura}-{slug(modelo or modelo_embeddings())}"
+    """Una colección por arquitectura y modelo de embeddings, p. ej. naive-qwen3-embedding-0.6b.
+
+    La de RAPTOR también lleva el LLM, porque los resúmenes del árbol dependen de él:
+    raptor-qwen3-embedding-0.6b-llama3.1-8b.
+    """
+    nombre = f"{arquitectura}-{slug(modelo or modelo_embeddings())}"
+    if arquitectura.startswith("raptor"):
+        nombre += f"-{slug(config()['llm']['modelo'])}"
+    return nombre
 
 
 def crear_coleccion(nombre: str):
@@ -248,8 +273,9 @@ def armar_prompt(pregunta: str, nodos: list) -> list:
     ]
 
 
-def generar(mensajes: list, modelo: str = None) -> dict:
-    """LLM local con los parámetros fijos de config.yaml; devuelve respuesta + métricas de equipo."""
+def generar(mensajes: list, modelo: str = None, max_tokens: int = None) -> dict:
+    """LLM local con los parámetros fijos de config.yaml; devuelve respuesta + métricas de equipo.
+    max_tokens solo se cambia para los resúmenes de RAPTOR (config: raptor.max_tokens_resumen)."""
     import ollama
 
     llm = config()["llm"]
@@ -258,7 +284,7 @@ def generar(mensajes: list, modelo: str = None) -> dict:
         model=modelo or llm["modelo"],
         messages=mensajes,
         options={"temperature": llm["temperatura"], "top_p": llm["top_p"], "seed": llm["semilla"],
-                 "num_ctx": llm["num_ctx"], "num_predict": llm["max_tokens"]},
+                 "num_ctx": llm["num_ctx"], "num_predict": max_tokens or llm["max_tokens"]},
         **extra,
     )
     t_gen = (r.eval_duration or 0) / NS
@@ -269,6 +295,7 @@ def generar(mensajes: list, modelo: str = None) -> dict:
         "t_primer_token_aprox_s": round(((r.load_duration or 0) + (r.prompt_eval_duration or 0)) / NS, 3),
         "t_generacion_s": round((r.total_duration or 0) / NS, 3),
         "tokens_por_s": round((r.eval_count or 0) / t_gen, 2) if t_gen else None,
+        "fin": getattr(r, "done_reason", None),   # "length" = se cortó al llegar al tope de tokens
     }
 
 

@@ -28,52 +28,58 @@ from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from eval.metricas import mrr, recall_at_k  # noqa: E402
+from eval.metricas import metricas_citas, mrr, recall_at_k  # noqa: E402
 from pipelines.comun import (abrir_coleccion, armar_prompt, calentar, config, escribir_jsonl,  # noqa: E402
                              generar, info_maquina, leer_jsonl, modelo_embeddings,
                              nombre_coleccion, recuperar, ruta, slug, vram_usada_mb)
 
-ARQUITECTURA = "naive"
-
-
-def responder(col, pregunta: str, modelo_emb: str, solo_recuperacion: bool = False) -> dict:
+def responder(col, pregunta: str, modelo_emb: str, solo_recuperacion: bool = False,
+              modelo_llm: str = None) -> dict:
     t0 = time.perf_counter()
     rec = recuperar(col, pregunta, modelo_emb)
     salida = {
         "recuperados": [{k: c[k] for k in ("id", "controles", "citas", "nivel", "similitud", "n_tokens")}
                         for c in rec["seleccion"]],
-        "ranking_controles": [c["controles"] for c in rec["candidatos"]],
+        # Ranking para las métricas: ids de los 100 candidatos y controles de los 20 primeros
+        "ranking_ids": [c["id"] for c in rec["candidatos"]],
+        "ranking_controles": [c["controles"] for c in rec["candidatos"][:20]],
         "tokens_contexto": rec["tokens_contexto"],
         "t_embedding_consulta_s": rec["t_embedding_consulta_s"],
         "t_busqueda_s": rec["t_busqueda_s"],
     }
     if not solo_recuperacion:
-        salida.update(generar(armar_prompt(pregunta, rec["seleccion"])))
+        salida.update(generar(armar_prompt(pregunta, rec["seleccion"]), modelo_llm))
         salida["vram_gpu_mb"] = vram_usada_mb()
     salida["t_total_s"] = round(time.perf_counter() - t0, 3)
     return salida
 
 
-def main() -> None:
+def main(arquitectura: str = "naive") -> None:
+    """La usan naive_rag.py y raptor_rag.py: solo cambia la colección (qué nodos hay en el índice)."""
     p = argparse.ArgumentParser()
     p.add_argument("pregunta", nargs="*", help="pregunta suelta (entre comillas)")
     p.add_argument("--maquina", required=True, help="pc_owen o lab_p5")
     p.add_argument("--preguntas", help="archivo JSONL con preguntas (campos id, pregunta, controles_esperados)")
     p.add_argument("--modelo-emb", help="modelo de embeddings (por defecto, el de config.yaml)")
     p.add_argument("--solo-recuperacion", action="store_true", help="no llama al LLM (OE4)")
+    p.add_argument("--coleccion", help="otra colección (p. ej. la del árbol de prueba)")
+    p.add_argument("--modelo-llm", help="otro LLM (OE2: comparar candidatos con la misma recuperación)")
     a = p.parse_args()
 
     modelo_emb = a.modelo_emb or modelo_embeddings()
-    modelo_llm = config()["llm"]["modelo"]
-    col = abrir_coleccion(nombre_coleccion(ARQUITECTURA, modelo_emb))
+    modelo_llm = a.modelo_llm or config()["llm"]["modelo"]
+    col = abrir_coleccion(a.coleccion or nombre_coleccion(arquitectura, modelo_emb))
+    print(f"Arquitectura: {arquitectura} | colección: {col.name} ({col.count()} nodos)")
 
     # ---- pregunta suelta: se muestra en pantalla (incluye la carga del modelo si no estaba en la GPU)
     if not a.preguntas:
         pregunta = " ".join(a.pregunta) or "¿Qué exige NIST para gestionar el ciclo de vida de las cuentas?"
-        r = responder(col, pregunta, modelo_emb, a.solo_recuperacion)
-        print(f"Hojas en el contexto: {len(r['recuperados'])} ({r['tokens_contexto']} tokens)")
+        r = responder(col, pregunta, modelo_emb, a.solo_recuperacion, modelo_llm)
+        resumenes = sum(c["nivel"] > 0 for c in r["recuperados"])
+        print(f"Nodos en el contexto: {len(r['recuperados'])} ({resumenes} resúmenes) "
+              f"| {r['tokens_contexto']} tokens")
         for c in r["recuperados"][:10]:
-            print(f"  {c['similitud']:.3f}  {c['citas'][0]:<20} {c['id']}")
+            print(f"  {c['similitud']:.3f}  capa {c['nivel']}  {' '.join(c['citas'][:3]):<36} {c['id']}")
         if not a.solo_recuperacion:
             print(f"\n--- Respuesta de {modelo_llm} ({r['t_total_s']} s, "
                   f"{r['tokens_por_s']} tokens/s) ---\n{r['respuesta']}")
@@ -83,11 +89,11 @@ def main() -> None:
     preguntas = leer_jsonl(a.preguntas)
     if not a.solo_recuperacion:
         print(f"Cargando {modelo_llm} en la GPU (corrida de calentamiento, se descarta)...")
-        calentar()
-    filas, r5, r10, rr = [], [], [], []
+        calentar(modelo_llm)
+    filas, r5, r10, rr, cc, ce = [], [], [], [], [], []
     for q in preguntas:
-        r = responder(col, q["pregunta"], modelo_emb, a.solo_recuperacion)
-        fila = {"id": q["id"], "pregunta": q["pregunta"], "arquitectura": ARQUITECTURA,
+        r = responder(col, q["pregunta"], modelo_emb, a.solo_recuperacion, modelo_llm)
+        fila = {"id": q["id"], "pregunta": q["pregunta"], "arquitectura": arquitectura,
                 "modelo_embeddings": modelo_emb, "modelo_llm": None if a.solo_recuperacion else modelo_llm,
                 **r}
         esperados = set(q.get("controles_esperados", []))
@@ -96,17 +102,31 @@ def main() -> None:
             fila["recall@10"] = recall_at_k(r["ranking_controles"], esperados, 10)
             fila["mrr"] = mrr(r["ranking_controles"], esperados)
             r5.append(fila["recall@5"]); r10.append(fila["recall@10"]); rr.append(fila["mrr"])
+        if not a.solo_recuperacion:
+            en_contexto = {c for n in r["recuperados"] for c in n["controles"]}
+            fila.update(metricas_citas(r["respuesta"], en_contexto, esperados))
+            if fila["citas_en_contexto"] is not None:
+                cc.append(fila["citas_en_contexto"])
+            if fila["citas_esperadas"] is not None:
+                ce.append(fila["citas_esperadas"])
         filas.append(fila)
         extra = f" | R@5 {fila['recall@5']:.2f} MRR {fila['mrr']:.2f}" if esperados else ""
-        print(f"{q['id']}: {len(r['recuperados'])} hojas, {r['t_total_s']} s{extra}")
+        if not a.solo_recuperacion:
+            extra += (f" | {r['t_generacion_s']} s, citas: {', '.join(fila['citas']) or 'ninguna'}"
+                      f"{' | SIN EVIDENCIA' if fila['sin_evidencia'] else ''}")
+        resumenes = sum(c["nivel"] > 0 for c in r["recuperados"])
+        print(f"{q['id']}: {len(r['recuperados'])} nodos ({resumenes} resúmenes), {r['t_total_s']} s{extra}")
 
     fecha = datetime.now().strftime("%Y%m%d_%H%M")
     llm = "sin-llm" if a.solo_recuperacion else slug(modelo_llm)
-    salida = ruta("resultados") / f"{ARQUITECTURA}__{slug(modelo_emb)}__{llm}__{a.maquina}__{fecha}.jsonl"
+    salida = ruta("resultados") / f"{arquitectura}__{slug(modelo_emb)}__{llm}__{a.maquina}__{fecha}.jsonl"
     escribir_jsonl(salida, [{"maquina": info_maquina(a.maquina), "fecha": fecha}] + filas)
     if rr:
         print(f"\nPromedio: Recall@5 {statistics.mean(r5):.3f} | Recall@10 {statistics.mean(r10):.3f} "
               f"| MRR {statistics.mean(rr):.3f}")
+    if cc or ce:
+        print(f"Citas: en el contexto {statistics.mean(cc) if cc else 0:.3f} "
+              f"| controles esperados citados {statistics.mean(ce) if ce else 0:.3f}")
     print(f"Resultados: {salida.relative_to(ruta('.'))}")
 
 

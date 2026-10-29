@@ -36,8 +36,8 @@ fragmentacion:
 # OE4: modelo de embeddings (servido por Ollama, igual que el LLM).
 # Debe ser MULTILINGÜE: las preguntas están en español y el corpus en inglés.
 embeddings:
-  modelo: "qwen3-embedding:0.6b"   # Seleccionado en el OE4 (MRR 1,00; 5 preguntas reservadas, lab_p5)
-  lote: 64                	   # hojas por llamada a Ollama
+  modelo: "qwen3-embedding:0.6b"   # Seleccionado en el OE4 (laboratorio, 28/10/2026): mayor MRR.
+  lote: 64                # hojas por llamada a Ollama
 
 # Candidatos del OE4 y el prefijo que cada uno exige según su ficha técnica.
 # Si un modelo pide un prefijo y no se le pone, recupera peor.
@@ -65,3 +65,21 @@ recuperacion:
 # Base vectorial local (NO se sube a GitHub: guarda texto ISO)
 almacen:
   ruta: "chroma_db"
+
+# OE6: construcción del árbol RAPTOR (Sarthi et al., 2024; valores del código oficial).
+raptor:
+  dimension_reducida: 10      # UMAP reduce los embeddings a 10 dimensiones antes de agrupar
+  umbral_gmm: 0.1             # agrupamiento suave: un nodo entra a todo grupo con probabilidad > 0.1
+  max_grupos: 50              # máximo de grupos que prueba el BIC
+  max_tokens_grupo: 3500      # si un grupo supera esto, se vuelve a agrupar
+  max_capas: 5
+  vecinos_locales: 10         # UMAP local
+  semilla: 224                # RANDOM_SEED del código oficial (GMM). Desviación: también fija UMAP
+  max_tokens_resumen: 400     # tope de seguridad; el largo lo fija el prompt (~150 palabras)
+  # Prompt del código oficial + dos frases propias (desviación documentada):
+  #  1) conservar normas e identificadores de control (para las citas);
+  #  2) un párrafo de máx. 150 palabras sin introducción ni viñetas: llama3.1 escribe
+  #     resúmenes largos con formato y se cortaban; Sarthi et al. (2024) reportan ~131 tokens por resumen.
+  prompt_resumen: "Write a summary of the following, including as many key details as possible. Keep the names of the standards and the control identifiers (for example AC-2, IA-2(1), 5.15, A.8.2, A01:2025). Write a single paragraph of at most 150 words, with no introduction, headings or bullet points.\n\n{contexto}"
+  sistema_resumen: "You are a Summarizing Text Portal"
+  max_citas_resumen: 8        # en el prompt, un resumen muestra hasta 8 controles (los de más hojas)

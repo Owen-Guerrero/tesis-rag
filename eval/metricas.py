@@ -41,3 +41,37 @@ def ndcg_at_k(ranking: list[list[str]], esperados: set[str], k: int, total_relev
               if relevante(controles, esperados))
     ideal = sum(1 / math.log2(i + 1) for i in range(1, min(k, total_relevantes) + 1))
     return dcg / ideal if ideal else 0.0
+
+
+# ---------------------------------------------------------------- citas en la respuesta
+import re
+
+_PATRONES_CITA = [
+    ("NIST", re.compile(r"\bNIST(?:\s+SP\s+800-53)?(?:\s+Rev\.\s*5)?\s+([A-Z]{2}-\d+)(?:\(\d+\))?")),
+    ("ISO27002", re.compile(r"\bISO(?:/IEC)?\s*27002(?::2022)?\s+(\d+\.\d+(?:\.\d+)?)")),
+    ("ISO27001", re.compile(r"\bISO(?:/IEC)?\s*27001(?::2022)?\s+(A\.\d+\.\d+|\d+(?:\.\d+)*)")),
+    ("OWASP", re.compile(r"\bOWASP(?:\s+Top\s+10(?::2025)?)?\s+(A\d{2})(?::2025)?")),
+]
+
+
+def extraer_citas(texto: str) -> set:
+    """Controles citados en una respuesta, en formato de control base (NIST-AC-2, ISO27002-5.15...).
+    Reconoce la cita con o sin corchetes: "[NIST IA-2(1)]" y "NIST IA-2(1) exige..." cuentan igual."""
+    citas = set()
+    for prefijo, patron in _PATRONES_CITA:
+        for m in patron.finditer(texto or ""):
+            ident = m.group(1).rstrip(".")
+            citas.add(f"{prefijo}-{ident}:2025" if prefijo == "OWASP" else f"{prefijo}-{ident}")
+    return citas
+
+
+def metricas_citas(respuesta: str, controles_contexto: set, esperados: set) -> dict:
+    """- citas_en_contexto: fracción de lo citado que SÍ estaba en el contexto (citas no inventadas).
+       - citas_esperadas: fracción de los controles esperados que la respuesta cita."""
+    citadas = extraer_citas(respuesta)
+    return {
+        "citas": sorted(citadas),
+        "citas_en_contexto": len(citadas & controles_contexto) / len(citadas) if citadas else None,
+        "citas_esperadas": len(citadas & esperados) / len(esperados) if esperados else None,
+        "sin_evidencia": "No se encontró evidencia en el contexto" in (respuesta or ""),
+    }

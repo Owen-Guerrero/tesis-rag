@@ -1,0 +1,73 @@
+{"id": "raptor-c1-0", "nivel": 1, "n_tokens": 177, "hijos": ["nist-AC-4(4)#h0", "nist-AC-4(4)#h1", "nist-AC-4(7)#h0", "nist-AC-4(7)#h1", "nist-AC-4(21)#h0", "nist-AC-4(21)#h1"], "conteo_controles": {"NIST-AC-4": 6}}
+{"id": "raptor-c1-1", "nivel": 1, "n_tokens": 136, "hijos": ["nist-AC-3(5)#h0", "nist-AC-3(5)#h1", "nist-AC-4(15)#h0", "nist-AC-4(15)#h1", "nist-AC-4(23)#h0"], "conteo_controles": {"NIST-AC-3": 2, "NIST-AC-4": 3}}
+{"id": "raptor-c1-2", "nivel": 1, "n_tokens": 138, "hijos": ["nist-AC-4(2)#h0", "nist-AC-4(2)#h1", "nist-AC-6(4)#h0"], "conteo_controles": {"NIST-AC-4": 2, "NIST-AC-6": 1}}
+{"id": "raptor-c1-3", "nivel": 1, "n_tokens": 147, "hijos": ["nist-AC-4#h2", "nist-AC-4#h3", "nist-AC-4#h4", "nist-AC-4#h6", "nist-AC-4(1)#h1", "nist-AC-4(13)#h0", "nist-AC-4(13)#h1"], "conteo_controles": {"NIST-AC-4": 7}}
+{"id": "raptor-c1-4", "nivel": 1, "n_tokens": 168, "hijos": ["nist-AC-4(5)#h0", "nist-AC-4(5)#h1", "nist-AC-4(6)#h0", "nist-AC-4(6)#h1", "nist-AC-4(12)#h0", "nist-AC-4(12)#h1", "nist-AC-4(19)#h1"], "conteo_controles": {"NIST-AC-4": 7}}
+{"id": "raptor-c1-5", "nivel": 1, "n_tokens": 211, "hijos": ["nist-AC-4#h0", "nist-AC-4#h1", "nist-AC-4#h5", "nist-AC-4#h7", "nist-AC-4(3)#h0", "nist-AC-4(8)#h0", "nist-AC-4(20)#h0"], "conteo_controles": {"NIST-AC-4": 7}}
+{"id": "raptor-c1-6", "nivel": 1, "n_tokens": 135, "hijos": ["nist-AC-4(17)#h0", "nist-AC-4(17)#h1", "nist-AC-4(17)#h2"], "conteo_controles": {"NIST-AC-4": 3}}
+{"id": "raptor-c1-7", "nivel": 1, "n_tokens": 154, "hijos": ["nist-AC-3(9)#h0", "nist-AC-3(9)#h1", "nist-AC-3(9)#h2", "nist-AC-3(9)#h3", "nist-AC-3(9)#h4"], "conteo_controles": {"NIST-AC-3": 5}}
+{"id": "raptor-c1-8", "nivel": 1, "n_tokens": 172, "hijos": ["nist-AC-2(1)#h0", "nist-AC-2(1)#h1", "nist-AC-2(1)#h2", "nist-AC-2(4)#h0", "nist-AC-2(8)#h0", "nist-AC-2(8)#h1"], "conteo_controles": {"NIST-AC-2": 6}}
+{"id": "raptor-c1-9", "nivel": 1, "n_tokens": 161, "hijos": ["nist-AC-10#h0", "nist-AC-10#h1", "nist-AC-12#h0", "nist-AC-12#h1", "nist-AC-12#h2", "nist-AC-12(3)#h0"], "conteo_controles": {"NIST-AC-10": 2, "NIST-AC-12": 4}}
+{"id": "raptor-c1-10", "nivel": 1, "n_tokens": 140, "hijos": ["nist-AC-8#h0", "nist-AC-8#h1", "nist-AC-8#h2", "nist-AC-8#h3", "nist-AC-8#h4"], "conteo_controles": {"NIST-AC-8": 5}}
+{"id": "raptor-c1-11", "nivel": 1, "n_tokens": 195, "hijos": ["nist-AC-2#h4", "nist-AC-2#h6", "nist-AC-2#h11", "nist-AC-2(3)#h1", "nist-AC-2(9)#h0", "nist-AC-2(13)#h0", "nist-AC-2(13)#h1"], "conteo_controles": {"NIST-AC-2": 7}}
+{"id": "raptor-c1-12", "nivel": 1, "n_tokens": 161, "hijos": ["nist-AC-2#h2", "nist-AC-2#h3", "nist-AC-2#h8", "nist-AC-2(11)#h0", "nist-AC-2(11)#h1", "nist-AC-2(12)#h0", "nist-AC-2(12)#h1"], "conteo_controles": {"NIST-AC-2": 7}}
+{"id": "raptor-c1-13", "nivel": 1, "n_tokens": 129, "hijos": ["nist-AC-2#h9", "nist-AC-2#h10", "nist-AC-2(2)#h0", "nist-AC-2(3)#h0"], "conteo_controles": {"NIST-AC-2": 4}}
+{"id": "raptor-c1-14", "nivel": 1, "n_tokens": 157, "hijos": ["nist-AC-2(5)#h0", "nist-AC-2(5)#h1", "nist-AC-12(1)#h0", "nist-AC-12(2)#h0"], "conteo_controles": {"NIST-AC-2": 2, "NIST-AC-12": 2}}
+{"id": "raptor-c1-15", "nivel": 1, "n_tokens": 121, "hijos": ["nist-AC-2#h0", "nist-AC-2#h1", "nist-AC-2#h7"], "conteo_controles": {"NIST-AC-2": 3}}
+{"id": "raptor-c1-16", "nivel": 1, "n_tokens": 142, "hijos": ["nist-AC-7#h0", "nist-AC-7(3)#h0", "nist-AC-7(4)#h0", "nist-AC-7(4)#h1"], "conteo_controles": {"NIST-AC-7": 4}}
+{"id": "raptor-c1-17", "nivel": 1, "n_tokens": 173, "hijos": ["nist-AC-9#h0", "nist-AC-9(1)#h0", "nist-AC-9(2)#h0", "nist-AC-9(2)#h1", "nist-AC-9(3)#h0", "nist-AC-9(4)#h0", "nist-AC-9(4)#h1"], "conteo_controles": {"NIST-AC-9": 7}}
+{"id": "raptor-c1-18", "nivel": 1, "n_tokens": 157, "hijos": ["nist-AC-7#h1", "nist-AC-7#h2", "nist-AC-7#h3", "nist-AC-7#h4", "nist-AC-7#h5", "nist-AC-7#h6"], "conteo_controles": {"NIST-AC-7": 6}}
+{"id": "raptor-c1-19", "nivel": 1, "n_tokens": 152, "hijos": ["nist-AC-2(7)#h2", "nist-AC-3(4)#h1", "nist-AC-3(13)#h0", "nist-AC-3(13)#h1", "nist-AC-3(13)#h2"], "conteo_controles": {"NIST-AC-2": 1, "NIST-AC-3": 4}}
+{"id": "raptor-c1-20", "nivel": 1, "n_tokens": 115, "hijos": ["nist-AC-19#h0", "nist-AC-19#h4", "nist-AC-19#h5", "nist-AC-19#h6"], "conteo_controles": {"NIST-AC-19": 4}}
+{"id": "raptor-c1-21", "nivel": 1, "n_tokens": 124, "hijos": ["nist-AC-7(2)#h0", "nist-AC-7(2)#h2", "nist-AC-7(2)#h3"], "conteo_controles": {"NIST-AC-7": 3}}
+{"id": "raptor-c1-22", "nivel": 1, "n_tokens": 109, "hijos": ["nist-AC-18(5)#h0", "nist-AC-18(5)#h1", "nist-AC-18(5)#h2"], "conteo_controles": {"NIST-AC-18": 3}}
+{"id": "raptor-c1-23", "nivel": 1, "n_tokens": 131, "hijos": ["nist-AC-11#h0", "nist-AC-11#h1", "nist-AC-11#h2"], "conteo_controles": {"NIST-AC-11": 3}}
+{"id": "raptor-c1-24", "nivel": 1, "n_tokens": 134, "hijos": ["nist-AC-7(2)#h1", "nist-AC-19#h1", "nist-AC-19#h2", "nist-AC-19#h3"], "conteo_controles": {"NIST-AC-7": 1, "NIST-AC-19": 3}}
+{"id": "raptor-c1-25", "nivel": 1, "n_tokens": 124, "hijos": ["nist-AC-19(4)#h0", "nist-AC-19(4)#h1", "nist-AC-19(4)#h2"], "conteo_controles": {"NIST-AC-19": 3}}
+{"id": "raptor-c1-26", "nivel": 1, "n_tokens": 121, "hijos": ["nist-AC-19#h7", "nist-AC-19(5)#h0"], "conteo_controles": {"NIST-AC-19": 2}}
+{"id": "raptor-c1-27", "nivel": 1, "n_tokens": 131, "hijos": ["nist-AC-16(1)#h1", "nist-AC-16(9)#h0", "nist-AC-16(9)#h1", "nist-AC-16(9)#h2"], "conteo_controles": {"NIST-AC-16": 4}}
+{"id": "raptor-c1-28", "nivel": 1, "n_tokens": 155, "hijos": ["nist-AC-4(1)#h0", "nist-AC-4(1)#h2", "nist-AC-4(1)#h3", "nist-AC-16#h0"], "conteo_controles": {"NIST-AC-4": 3, "NIST-AC-16": 1}}
+{"id": "raptor-c1-29", "nivel": 1, "n_tokens": 145, "hijos": ["nist-AC-16#h9", "nist-AC-16#h10", "nist-AC-16#h11", "nist-AC-16#h12"], "conteo_controles": {"NIST-AC-16": 4}}
+{"id": "raptor-c1-30", "nivel": 1, "n_tokens": 123, "hijos": ["nist-AC-16#h2", "nist-AC-16#h3", "nist-AC-16#h5"], "conteo_controles": {"NIST-AC-16": 3}}
+{"id": "raptor-c1-31", "nivel": 1, "n_tokens": 167, "hijos": ["nist-AC-16#h6", "nist-AC-16#h7", "nist-AC-16(7)#h0", "nist-AC-16(8)#h0", "nist-AC-16(8)#h1"], "conteo_controles": {"NIST-AC-16": 5}}
+{"id": "raptor-c1-32", "nivel": 1, "n_tokens": 162, "hijos": ["nist-AC-16(2)#h0", "nist-AC-16(4)#h0", "nist-AC-16(4)#h1", "nist-AC-16(4)#h2", "nist-AC-16(4)#h3", "nist-AC-16(10)#h0", "nist-AC-16(10)#h1"], "conteo_controles": {"NIST-AC-16": 7}}
+{"id": "raptor-c1-33", "nivel": 1, "n_tokens": 134, "hijos": ["nist-AC-11(1)#h0", "nist-AC-16#h1", "nist-AC-16#h4", "nist-AC-16#h8", "nist-AC-16(5)#h0", "nist-AC-16(5)#h1"], "conteo_controles": {"NIST-AC-11": 1, "NIST-AC-16": 5}}
+{"id": "raptor-c1-34", "nivel": 1, "n_tokens": 139, "hijos": ["nist-AC-16(1)#h0", "nist-AC-16(3)#h0", "nist-AC-16(3)#h1", "nist-AC-16(6)#h0", "nist-AC-16(7)#h1"], "conteo_controles": {"NIST-AC-16": 5}}
+{"id": "raptor-c1-35", "nivel": 1, "n_tokens": 150, "hijos": ["nist-AC-3(11)#h0", "nist-AC-3(11)#h1", "nist-AC-3(14)#h0", "nist-AC-3(14)#h1", "nist-AC-3(14)#h2", "nist-AC-3(14)#h3", "nist-AC-4(20)#h1", "nist-AC-4(22)#h1"], "conteo_controles": {"NIST-AC-3": 6, "NIST-AC-4": 2}}
+{"id": "raptor-c1-36", "nivel": 1, "n_tokens": 178, "hijos": ["nist-AC-3(2)#h0", "nist-AC-5#h0", "nist-AC-5#h1", "nist-AC-5#h2", "nist-AC-6(1)#h0", "nist-AC-6(1)#h1"], "conteo_controles": {"NIST-AC-3": 1, "NIST-AC-5": 3, "NIST-AC-6": 2}}
+{"id": "raptor-c1-37", "nivel": 1, "n_tokens": 131, "hijos": ["nist-AC-14#h0", "nist-AC-14#h1", "nist-AC-14#h2", "nist-AC-14#h3"], "conteo_controles": {"NIST-AC-14": 4}}
+{"id": "raptor-c1-38", "nivel": 1, "n_tokens": 169, "hijos": ["nist-AC-3(2)#h1", "nist-AC-3(8)#h0", "nist-AC-3(8)#h1", "nist-AC-3(8)#h2", "nist-AC-3(10)#h0", "nist-AC-3(10)#h1"], "conteo_controles": {"NIST-AC-3": 6}}
+{"id": "raptor-c1-39", "nivel": 1, "n_tokens": 147, "hijos": ["nist-AC-3#h1", "nist-AC-3#h2", "nist-AC-3(12)#h0", "nist-AC-3(12)#h1", "nist-AC-4(22)#h0"], "conteo_controles": {"NIST-AC-3": 4, "NIST-AC-4": 1}}
+{"id": "raptor-c1-40", "nivel": 1, "n_tokens": 155, "hijos": ["nist-AC-3(3)#h1", "nist-AC-3(3)#h3", "nist-AC-3(3)#h5", "nist-AC-3(3)#h6", "nist-AC-3(3)#h8", "nist-AC-3(4)#h2", "nist-AC-3(4)#h4", "nist-AC-3(4)#h5"], "conteo_controles": {"NIST-AC-3": 8}}
+{"id": "raptor-c1-41", "nivel": 1, "n_tokens": 151, "hijos": ["nist-AC-1#h0", "nist-AC-1#h1", "nist-AC-1#h2", "nist-AC-1#h3", "nist-AC-1#h4", "nist-AC-1#h5"], "conteo_controles": {"NIST-AC-1": 6}}
+{"id": "raptor-c1-42", "nivel": 1, "n_tokens": 203, "hijos": ["nist-AC-3(3)#h7", "nist-AC-3(3)#h9", "nist-AC-3(4)#h3", "nist-AC-3(7)#h3", "nist-AC-3(13)#h3", "nist-AC-3(15)#h1"], "conteo_controles": {"NIST-AC-3": 6}}
+{"id": "raptor-c1-43", "nivel": 1, "n_tokens": 165, "hijos": ["nist-AC-3#h0", "nist-AC-3(3)#h0", "nist-AC-3(3)#h2", "nist-AC-3(3)#h4", "nist-AC-3(4)#h0", "nist-AC-3(7)#h0", "nist-AC-3(15)#h0"], "conteo_controles": {"NIST-AC-3": 7}}
+{"id": "raptor-c1-44", "nivel": 1, "n_tokens": 119, "hijos": ["nist-AC-6(1)#h2", "nist-AC-6(2)#h0", "nist-AC-6(6)#h0"], "conteo_controles": {"NIST-AC-6": 3}}
+{"id": "raptor-c1-45", "nivel": 1, "n_tokens": 118, "hijos": ["nist-AC-2(6)#h0", "nist-AC-2(6)#h1", "nist-AC-2(6)#h2", "nist-AC-2(6)#h3"], "conteo_controles": {"NIST-AC-2": 4}}
+{"id": "raptor-c1-46", "nivel": 1, "n_tokens": 170, "hijos": ["nist-AC-2(7)#h1", "nist-AC-3(7)#h1", "nist-AC-3(7)#h2", "nist-AC-6(2)#h1"], "conteo_controles": {"NIST-AC-2": 1, "NIST-AC-3": 2, "NIST-AC-6": 1}}
+{"id": "raptor-c1-47", "nivel": 1, "n_tokens": 117, "hijos": ["nist-AC-6(7)#h0", "nist-AC-6(7)#h1"], "conteo_controles": {"NIST-AC-6": 2}}
+{"id": "raptor-c1-48", "nivel": 1, "n_tokens": 152, "hijos": ["nist-AC-6#h0", "nist-AC-6#h1", "nist-AC-6(6)#h1", "nist-AC-6(8)#h1"], "conteo_controles": {"NIST-AC-6": 4}}
+{"id": "raptor-c1-49", "nivel": 1, "n_tokens": 155, "hijos": ["nist-AC-6(8)#h0", "nist-AC-6(9)#h0", "nist-AC-6(9)#h1", "nist-AC-6(10)#h0", "nist-AC-6(10)#h1"], "conteo_controles": {"NIST-AC-6": 5}}
+{"id": "raptor-c1-50", "nivel": 1, "n_tokens": 112, "hijos": ["nist-AC-2#h5", "nist-AC-2(7)#h0", "nist-AC-6(5)#h0", "nist-AC-6(5)#h1"], "conteo_controles": {"NIST-AC-2": 2, "NIST-AC-6": 2}}
+{"id": "raptor-c1-51", "nivel": 1, "n_tokens": 201, "hijos": ["nist-AC-4(19)#h0", "nist-AC-4(24)#h0", "nist-AC-4(25)#h0", "nist-AC-4(25)#h1", "nist-AC-4(32)#h0", "nist-AC-4(32)#h1"], "conteo_controles": {"NIST-AC-4": 6}}
+{"id": "raptor-c1-52", "nivel": 1, "n_tokens": 126, "hijos": ["nist-AC-4(8)#h1", "nist-AC-4(8)#h4"], "conteo_controles": {"NIST-AC-4": 2}}
+{"id": "raptor-c1-53", "nivel": 1, "n_tokens": 123, "hijos": ["nist-AC-4(26)#h0", "nist-AC-4(26)#h1", "nist-AC-4(29)#h0", "nist-AC-4(29)#h1", "nist-AC-4(29)#h2"], "conteo_controles": {"NIST-AC-4": 5}}
+{"id": "raptor-c1-54", "nivel": 1, "n_tokens": 148, "hijos": ["nist-AC-4(8)#h2", "nist-AC-4(8)#h3", "nist-AC-4(14)#h0", "nist-AC-4(14)#h1"], "conteo_controles": {"NIST-AC-4": 4}}
+{"id": "raptor-c1-55", "nivel": 1, "n_tokens": 178, "hijos": ["nist-AC-4(9)#h0", "nist-AC-4(9)#h1", "nist-AC-4(10)#h0", "nist-AC-4(10)#h1", "nist-AC-4(11)#h0", "nist-AC-4(11)#h1"], "conteo_controles": {"NIST-AC-4": 6}}
+{"id": "raptor-c1-56", "nivel": 1, "n_tokens": 150, "hijos": ["nist-AC-4(27)#h0", "nist-AC-4(27)#h1", "nist-AC-4(28)#h0", "nist-AC-4(28)#h1", "nist-AC-4(30)#h0", "nist-AC-4(31)#h0"], "conteo_controles": {"NIST-AC-4": 6}}
+{"id": "raptor-c1-57", "nivel": 1, "n_tokens": 161, "hijos": ["nist-AC-6(3)#h0", "nist-AC-17(4)#h0", "nist-AC-17(4)#h1", "nist-AC-17(10)#h0", "nist-AC-17(10)#h1", "nist-AC-17(10)#h2"], "conteo_controles": {"NIST-AC-6": 1, "NIST-AC-17": 5}}
+{"id": "raptor-c1-58", "nivel": 1, "n_tokens": 151, "hijos": ["nist-AC-17#h0", "nist-AC-17#h3", "nist-AC-17(6)#h0", "nist-AC-17(6)#h1", "nist-AC-17(9)#h0"], "conteo_controles": {"NIST-AC-17": 5}}
+{"id": "raptor-c1-59", "nivel": 1, "n_tokens": 157, "hijos": ["nist-AC-18#h0", "nist-AC-18(1)#h0", "nist-AC-18(3)#h0", "nist-AC-18(4)#h0"], "conteo_controles": {"NIST-AC-18": 4}}
+{"id": "raptor-c1-60", "nivel": 1, "n_tokens": 139, "hijos": ["nist-AC-17(1)#h0", "nist-AC-17(1)#h1", "nist-AC-17(3)#h0", "nist-AC-17(3)#h1"], "conteo_controles": {"NIST-AC-17": 4}}
+{"id": "raptor-c1-61", "nivel": 1, "n_tokens": 106, "hijos": ["nist-AC-17#h1", "nist-AC-17#h2", "nist-AC-17(2)#h0"], "conteo_controles": {"NIST-AC-17": 3}}
+{"id": "raptor-c2-0", "nivel": 2, "n_tokens": 267, "hijos": ["raptor-c1-3", "raptor-c1-5", "raptor-c1-7", "raptor-c1-28"], "conteo_controles": {"NIST-AC-4": 17, "NIST-AC-3": 5, "NIST-AC-16": 1}}
+{"id": "raptor-c2-1", "nivel": 2, "n_tokens": 200, "hijos": ["raptor-c1-27", "raptor-c1-31"], "conteo_controles": {"NIST-AC-16": 9}}
+{"id": "raptor-c2-2", "nivel": 2, "n_tokens": 228, "hijos": ["raptor-c1-8", "raptor-c1-32", "raptor-c1-34"], "conteo_controles": {"NIST-AC-2": 6, "NIST-AC-16": 12}}
+{"id": "raptor-c2-3", "nivel": 2, "n_tokens": 169, "hijos": ["raptor-c1-29", "raptor-c1-30", "raptor-c1-33"], "conteo_controles": {"NIST-AC-16": 12, "NIST-AC-11": 1}}
+{"id": "raptor-c2-4", "nivel": 2, "n_tokens": 234, "hijos": ["raptor-c1-2", "raptor-c1-6", "raptor-c1-45", "raptor-c1-46", "raptor-c1-47", "raptor-c1-48", "raptor-c1-49"], "conteo_controles": {"NIST-AC-4": 5, "NIST-AC-6": 13, "NIST-AC-2": 5, "NIST-AC-3": 2}}
+{"id": "raptor-c2-5", "nivel": 2, "n_tokens": 205, "hijos": ["raptor-c1-9", "raptor-c1-10", "raptor-c1-14", "raptor-c1-16", "raptor-c1-17", "raptor-c1-18", "raptor-c1-23", "raptor-c1-37"], "conteo_controles": {"NIST-AC-10": 2, "NIST-AC-12": 6, "NIST-AC-8": 5, "NIST-AC-2": 2, "NIST-AC-7": 10, "NIST-AC-9": 7, "NIST-AC-11": 3, "NIST-AC-14": 4}}
+{"id": "raptor-c2-6", "nivel": 2, "n_tokens": 400, "hijos": ["raptor-c1-0", "raptor-c1-22", "raptor-c1-35", "raptor-c1-36", "raptor-c1-38", "raptor-c1-39", "raptor-c1-57", "raptor-c1-59", "raptor-c1-60"], "conteo_controles": {"NIST-AC-4": 9, "NIST-AC-18": 7, "NIST-AC-3": 17, "NIST-AC-5": 3, "NIST-AC-6": 3, "NIST-AC-17": 9}}
+{"id": "raptor-c2-7", "nivel": 2, "n_tokens": 173, "hijos": ["raptor-c1-20", "raptor-c1-21", "raptor-c1-24", "raptor-c1-25", "raptor-c1-26", "raptor-c1-58", "raptor-c1-61"], "conteo_controles": {"NIST-AC-19": 12, "NIST-AC-7": 4, "NIST-AC-17": 8}}
+{"id": "raptor-c2-8", "nivel": 2, "n_tokens": 226, "hijos": ["raptor-c1-1", "raptor-c1-4", "raptor-c1-51", "raptor-c1-52", "raptor-c1-53", "raptor-c1-54", "raptor-c1-55", "raptor-c1-56"], "conteo_controles": {"NIST-AC-3": 2, "NIST-AC-4": 39}}
+{"id": "raptor-c2-9", "nivel": 2, "n_tokens": 220, "hijos": ["raptor-c1-11", "raptor-c1-12", "raptor-c1-13", "raptor-c1-15", "raptor-c1-44", "raptor-c1-50"], "conteo_controles": {"NIST-AC-2": 23, "NIST-AC-6": 5}}
+{"id": "raptor-c2-10", "nivel": 2, "n_tokens": 187, "hijos": ["raptor-c1-19", "raptor-c1-40", "raptor-c1-41", "raptor-c1-42", "raptor-c1-43"], "conteo_controles": {"NIST-AC-2": 1, "NIST-AC-3": 25, "NIST-AC-1": 6}}

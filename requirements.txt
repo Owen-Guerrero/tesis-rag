@@ -9,4 +9,7 @@ tiktoken
 # OE4/OE5: base vectorial local y cálculo de vectores
 chromadb==1.5.9
 numpy
-# En etapas siguientes se agregan umap-learn y scikit-learn (RAPTOR) y las métricas.
+# OE6: agrupamiento del árbol RAPTOR (UMAP + mezclas gaussianas)
+umap-learn==0.5.12
+scikit-learn==1.9.1
+# En la etapa siguiente se agregan las librerías de métricas.
