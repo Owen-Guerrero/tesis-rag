@@ -5,13 +5,14 @@
 # =============================================================
 
 llm:
-  modelo: "llama3.1:8b"   # PROVISIONAL. Se fija tras la selección del OE2.
+  modelo: "gpt-oss:20b"   # Seleccionado en el OE2 (lab_p5, 29/10/2026): empate en calidad de citas
+                          # con qwen2.5:14b/32b y el menor tiempo (2,6 s); ver logs/comparacion_llm_calidad.csv
   temperatura: 0.0        # 0 = respuestas deterministas
   top_p: 1.0
   semilla: 42
   num_ctx: 8192           # Jovanovski et al. (2026): mejores resultados con 8192
-  max_tokens: 512
-  razonamiento: null      # modelos con "thinking": false o "low"; null = no se envía
+  max_tokens: 1024        # incluye los tokens de razonamiento de gpt-oss (con 512, sin "low", quedaban vacías)
+  razonamiento: "low"     # gpt-oss: razonamiento bajo. null = no se envía (modelos sin razonamiento)
 
 # OE2: modelos candidatos de pesos abiertos (se comparan con las dos familias de métricas).
 # Tres de ellos fueron evaluados por Jovanovski et al. (2026).
@@ -75,7 +76,7 @@ raptor:
   max_capas: 5
   vecinos_locales: 10         # UMAP local
   semilla: 224                # RANDOM_SEED del código oficial (GMM). Desviación: también fija UMAP
-  max_tokens_resumen: 400     # tope de seguridad; el largo lo fija el prompt (~150 palabras)
+  max_tokens_resumen: 800     # tope de seguridad (incluye el razonamiento de gpt-oss); el largo lo fija el prompt
   # Prompt del código oficial + dos frases propias (desviación documentada):
   #  1) conservar normas e identificadores de control (para las citas);
   #  2) un párrafo de máx. 150 palabras sin introducción ni viñetas: llama3.1 escribe

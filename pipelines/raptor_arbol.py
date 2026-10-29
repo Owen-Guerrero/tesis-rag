@@ -179,7 +179,7 @@ def construir(maquina: str, limite: int = None) -> None:
     calentar(llm)
 
     t_agrupar = t_resumir = t_embeber = 0.0
-    tokens_in = tokens_out = llamadas = cortados = 0
+    tokens_in = tokens_out = llamadas = cortados = vacios = 0
     vram_max = vram_usada_mb() or 0
     capas = []
     inicio = time.perf_counter()
@@ -217,6 +217,11 @@ def construir(maquina: str, limite: int = None) -> None:
                 conteo = Counter()
                 for h in hijos:
                     conteo.update(h["conteo"])
+                if not texto.strip():
+                    # Salvaguarda: un modelo de razonamiento podría gastar el tope pensando y no
+                    # devolver texto. No se crea un nodo vacío; sus hijos siguen en el árbol colapsado.
+                    vacios += 1
+                    continue
                 nuevos.append({"id": f"raptor-c{capa}-{k}", "nivel": capa, "texto": texto,
                                "n_tokens": contar_tokens(texto), "hijos": [h["id"] for h in hijos],
                                "conteo": conteo, "citas": citas_de(conteo)})
@@ -227,6 +232,8 @@ def construir(maquina: str, limite: int = None) -> None:
                           f"faltan ~{seg / (k + 1) * (len(grupos) - k - 1):.0f} s")
         t_resumir += time.perf_counter() - t0
 
+        if not nuevos:
+            break
         t0 = time.perf_counter()
         vectores = embeber([n["texto"] for n in nuevos], "documento", modelo_emb)
         t_embeber += time.perf_counter() - t0
@@ -275,6 +282,8 @@ def construir(maquina: str, limite: int = None) -> None:
         "capas": capas,
         "llamadas_llm": llamadas,
         "resumenes_cortados_por_tope": cortados,
+        "resumenes_vacios_descartados": vacios,
+        "razonamiento": config()["llm"].get("razonamiento"),
         "resumenes_desde_cache": len(todos) - len(hojas) - llamadas,
         "tokens_entrada_llm": tokens_in,
         "tokens_salida_llm": tokens_out,
@@ -291,7 +300,7 @@ def construir(maquina: str, limite: int = None) -> None:
     print(f"\nÁrbol listo: {len(hojas)} hojas + {registro['resumenes']} resúmenes en "
           f"{len(capas)} capas | {registro['t_total_s']} s | colección {nombre_col}")
     print(f"Resúmenes que llegaron al tope de {CFG['max_tokens_resumen']} tokens: {cortados} "
-          f"(recortados hasta su última oración completa)")
+          f"(recortados hasta su última oración completa) | vacíos descartados: {vacios}")
     for c in capas:
         print(f"  capa {c['capa']}: {c['resumenes']} resúmenes "
               f"(media {c['tokens_media_resumen']} tokens, {c['hijos_media']} hijos)")
