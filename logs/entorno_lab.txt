@@ -1,0 +1,14 @@
+name, memory.total [MiB], driver_version
+NVIDIA RTX 6000 Ada Generation, 49140 MiB, 596.51
+ollama version is 0.40.12
+Python 3.13.2
+Name: chromadb
+Version: 1.5.9
+Name: ragas
+Version: 0.4.3
+Name: umap-learn
+Version: 0.5.12
+Name: scikit-learn
+Version: 1.9.1
+Intel(R) Xeon(R) w7-2495X
+255.5
