@@ -42,6 +42,7 @@ import argparse
 import csv
 import json
 import math
+import random
 import re
 import statistics
 import sys
@@ -147,8 +148,77 @@ def ndcg_k(ranking, nodos, esperados, k):
     return dcg / ideal if ideal else 0.0
 
 
+def precision_k(ranking, nodos, esperados, k):
+    top = ranking[:k]
+    return sum(1 for i in top if nodos.get(i, set()) & esperados) / len(top) if top else 0.0
+
+
+def average_precision(ranking, nodos, esperados):
+    """Average Precision sobre el pool de 100 candidatos (MAP = media entre preguntas)."""
+    aciertos, suma = 0, 0.0
+    for pos, i in enumerate(ranking, start=1):
+        if nodos.get(i, set()) & esperados:
+            aciertos += 1
+            suma += aciertos / pos
+    return suma / aciertos if aciertos else 0.0
+
+
+def bootstrap(v, n=2000, semilla=42):
+    """IC del 95 % por remuestreo percentil, 2000 iteraciones (Flores et al., 2025)."""
+    v = [x for x in v if x is not None]
+    if len(v) < 2:
+        return None, None
+    rng = random.Random(semilla)
+    medias = sorted(statistics.mean(rng.choices(v, k=len(v))) for _ in range(n))
+    return medias[int(0.025 * n)], medias[int(0.975 * n) - 1]
+
+
+def percentil(v, q):
+    v = sorted(x for x in v if x is not None)
+    if not v:
+        return None
+    pos = (len(v) - 1) * q
+    lo, hi = math.floor(pos), math.ceil(pos)
+    return v[lo] + (v[hi] - v[lo]) * (pos - lo)
+
+
 # ================================================================ métricas de la respuesta
 _PAL = re.compile(r"\w+", re.UNICODE)
+
+
+def _tok(t):
+    return [x.lower() for x in _PAL.findall(t or "")]
+
+
+def _ngramas(t, n):
+    from collections import Counter
+    return Counter(tuple(t[i:i + n]) for i in range(len(t) - n + 1))
+
+
+def rouge_n(candidato: str, referencia: str, n: int) -> float:
+    a, b = _ngramas(_tok(candidato), n), _ngramas(_tok(referencia), n)
+    comunes = sum((a & b).values())
+    if not comunes:
+        return 0.0
+    p, r = comunes / sum(a.values()), comunes / sum(b.values())
+    return 2 * p * r / (p + r)
+
+
+def bleu(candidato: str, referencia: str) -> float:
+    """BLEU-4 a nivel de oración con suavizado +1 (Lin y Och, 2004) y penalización por brevedad."""
+    c, r = _tok(candidato), _tok(referencia)
+    if not c or not r:
+        return 0.0
+    logs = []
+    for n in range(1, 5):
+        cn, rn = _ngramas(c, n), _ngramas(r, n)
+        total = max(sum(cn.values()), 0)
+        coinc = sum((cn & rn).values())
+        logs.append(math.log((coinc + (1 if n > 1 else 0)) / (total + (1 if n > 1 else 0))) if total and (coinc or n > 1) else float("-inf"))
+    if any(x == float("-inf") for x in logs):
+        return 0.0
+    bp = 1.0 if len(c) > len(r) else math.exp(1 - len(r) / len(c))
+    return bp * math.exp(sum(logs) / 4)
 
 
 def rouge_l(candidato: str, referencia: str) -> float:
@@ -233,6 +303,8 @@ def main() -> None:
                 **{f"recall@{k}": recall_k(ranking, estricta, esp, k) for k in K},
                 "mrr": mrr(ranking, estricta, esp),
                 "ndcg@10": ndcg_k(ranking, estricta, esp, 10),
+                "precision@10": precision_k(ranking, estricta, esp, 10),
+                "map": average_precision(ranking, estricta, esp),
                 "recall_contexto": len(en_ctx & esp) / len(esp),
                 "recall@10_herencia": recall_k(ranking, herencia, esp, 10),
                 "mrr_herencia": mrr(ranking, herencia, esp),
@@ -244,6 +316,9 @@ def main() -> None:
                 "esperados_citados": len(citadas & esp) / len(esp),
                 "sin_citas": not citadas,
                 "rouge_l": rouge_l(r0.get("respuesta", ""), q["respuesta_referencia"]),
+                "rouge_1": rouge_n(r0.get("respuesta", ""), q["respuesta_referencia"], 1),
+                "rouge_2": rouge_n(r0.get("respuesta", ""), q["respuesta_referencia"], 2),
+                "bleu": bleu(r0.get("respuesta", ""), q["respuesta_referencia"]),
                 "similitud_semantica": float(np.dot(resp_vec[arq][i], ref_vec[i])),
                 "bertscore_f1": bert.get(arq, {}).get(i),
                 "respuesta_vacia": not (r0.get("respuesta") or "").strip(),
@@ -268,8 +343,9 @@ def main() -> None:
         w.writerows(filas_out)
 
     # ---------------------------------------------------------- resúmenes
-    metricas = ["recall@5", "recall@10", "mrr", "ndcg@10", "recall_contexto",
-                "citas_en_contexto", "esperados_citados", "rouge_l", "similitud_semantica",
+    metricas = ["recall@5", "recall@10", "precision@10", "mrr", "map", "ndcg@10", "recall_contexto",
+                "citas_en_contexto", "esperados_citados", "rouge_1", "rouge_2", "rouge_l", "bleu",
+                "similitud_semantica",
                 "bertscore_f1", "nodos_contexto", "resumenes_contexto", "tokens_contexto",
                 "t_total_s", "t_generacion_s", "t_primer_token_s", "tokens_por_s", "tokens_entrada",
                 "tokens_salida", "vram_gpu_mb", "recall@10_herencia", "mrr_herencia", "recall_contexto_herencia"]
@@ -281,10 +357,13 @@ def main() -> None:
             for m in metricas:
                 fila[m] = media([x[m] for x in sel])
                 fila[m + "_sd"] = desv([x[m] for x in sel])
+                fila[m + "_ic_inf"], fila[m + "_ic_sup"] = bootstrap([x[m] for x in sel])
             fila["sin_citas"] = sum(x["sin_citas"] for x in sel)
             fila["respuestas_vacias"] = sum(x["respuesta_vacia"] for x in sel)
             fila["respuestas_cortadas"] = sum(x["cortada"] for x in sel)
             fila["identicas_en_repeticiones"] = sum(x["identica_en_repeticiones"] for x in sel)
+            todas_lat = [rep[x["id"]]["t_total_s"] for rep in corridas[arq] for x in sel]
+            fila["t_total_p95"] = percentil(todas_lat, 0.95)
             resumen.append(fila)
     with (SALIDA / "resumen.csv").open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(resumen[0]))
@@ -294,33 +373,45 @@ def main() -> None:
     # ---------------------------------------------------------- tablas en markdown
     R = {(x["grupo"], x["arquitectura"]): x for x in resumen}
 
-    def linea(nombre, m, d=3, sd=True):
+    def linea(nombre, m, d=3, sd=True, ic=False):
         n, r = R[("todas", "naive")], R[("todas", "raptor")]
         def celda(x):
-            return f(x[m], d) + (f" ± {f(x[m + '_sd'], d)}" if sd and x[m] is not None else "")
+            if x[m] is None:
+                return "—"
+            if ic and x.get(m + "_ic_inf") is not None:
+                return f"{f(x[m], d)} [{f(x[m + '_ic_inf'], d)}, {f(x[m + '_ic_sup'], d)}]"
+            return f(x[m], d) + (f" ± {f(x[m + '_sd'], d)}" if sd else "")
         return f"| {nombre} | {celda(n)} | {celda(r)} |"
 
     md = ["# Resultados del piloto (20 preguntas, lab_p5)", "",
           f"Repeticiones: naive {len(corridas['naive'])}, RAPTOR {len(corridas['raptor'])}. "
-          "Valores: media ± desviación estándar entre preguntas.", "",
+          "Tablas 1 y 2: media [IC 95 % bootstrap percentil, 2000 iteraciones]. "
+          "Tabla 3: media ± desviación estándar.", "",
           "## Tabla 1. Recuperación", "", "| Métrica | Naive RAG | RAPTOR |", "|---|---|---|",
-          linea("Recall@5", "recall@5"), linea("Recall@10", "recall@10"), linea("MRR", "mrr"),
-          linea("nDCG@10", "ndcg@10"), linea("Recall del contexto (lo que recibe el LLM)", "recall_contexto"),
+          linea("Recall@5", "recall@5", ic=True), linea("Recall@10", "recall@10", ic=True),
+          linea("Precision@10", "precision@10", ic=True), linea("MRR", "mrr", ic=True), linea("MAP", "map", ic=True),
+          linea("nDCG@10", "ndcg@10", ic=True),
+          linea("Recall del contexto (lo que recibe el LLM)", "recall_contexto", ic=True),
           linea("Nodos en el contexto", "nodos_contexto", 1), linea("Resúmenes en el contexto", "resumenes_contexto", 1),
           linea("Tokens de contexto", "tokens_contexto", 0), "",
           "Regla de relevancia: mención explícita para los resúmenes; ISO 27001 A.x = ISO 27002 x.", "",
           "## Tabla 2. Calidad de la respuesta", "", "| Métrica | Naive RAG | RAPTOR |", "|---|---|---|",
-          linea("Citas en el contexto", "citas_en_contexto"), linea("Controles esperados citados", "esperados_citados"),
-          linea("ROUGE-L (F1)", "rouge_l"), linea("Similitud semántica con la referencia", "similitud_semantica")]
+          linea("Citas en el contexto", "citas_en_contexto", ic=True),
+          linea("Controles esperados citados", "esperados_citados", ic=True),
+          linea("ROUGE-1 (F1)", "rouge_1", ic=True), linea("ROUGE-2 (F1)", "rouge_2", ic=True),
+          linea("ROUGE-L (F1)", "rouge_l", ic=True), linea("BLEU-4", "bleu", ic=True),
+          linea("Answer Similarity (similitud semántica con la referencia)", "similitud_semantica", ic=True)]
     if bert:
-        md.append(linea("BERTScore (F1)", "bertscore_f1"))
+        md.append(linea("BERTScore (F1)", "bertscore_f1", ic=True))
     n, r = R[("todas", "naive")], R[("todas", "raptor")]
     md += [f"| Respuestas sin ninguna cita | {n['sin_citas']} | {r['sin_citas']} |",
            f"| Respuestas vacías / cortadas | {n['respuestas_vacias']} / {n['respuestas_cortadas']} | "
            f"{r['respuestas_vacias']} / {r['respuestas_cortadas']} |", "",
            "## Tabla 3. Desempeño del equipo (media entre repeticiones)", "",
            "| Métrica | Naive RAG | RAPTOR |", "|---|---|---|",
-           linea("Latencia total por pregunta (s)", "t_total_s", 2), linea("Tiempo de generación (s)", "t_generacion_s", 2),
+           linea("Latencia total por pregunta (s)", "t_total_s", 2),
+           f"| Latencia p95 (s) | {f(R[('todas', 'naive')]['t_total_p95'], 2)} | {f(R[('todas', 'raptor')]['t_total_p95'], 2)} |",
+           linea("Tiempo de generación (s)", "t_generacion_s", 2),
            linea("Primer token, aprox. (s)", "t_primer_token_s", 2), linea("Tokens/s", "tokens_por_s", 1),
            linea("Tokens de entrada al LLM", "tokens_entrada", 0), linea("Tokens de salida", "tokens_salida", 0),
            linea("VRAM de la GPU (MB)", "vram_gpu_mb", 0, sd=False),
