@@ -2,6 +2,7 @@
 Demostración en vivo: una pregunta, las dos arquitecturas, lado a lado
 --------------------------------------------------------------------
 Uso (desde la raíz del repo):
+  python pipelines\\demo.py                               (modo interactivo: pide preguntas una tras otra)
   python pipelines\\demo.py --calentar                     (antes de exponer: carga los modelos)
   python pipelines\\demo.py "¿Qué exige NIST para bloquear cuentas tras intentos fallidos?"
   python pipelines\\demo.py --solo naive "pregunta..."      (si no está el árbol de RAPTOR)
@@ -59,11 +60,28 @@ def main() -> None:
         embeber(["prueba"], "consulta")
         print("Listo.")
         return
+    arquitecturas = [a.solo] if a.solo else ["naive", "raptor"]
     pregunta = " ".join(a.pregunta)
-    if not pregunta:
-        raise SystemExit('Escribe la pregunta entre comillas: python pipelines\\demo.py "..."')
-    print(f"Pregunta: {pregunta}\nLLM: {modelo}  |  embeddings: {config()['embeddings']['modelo']}")
-    for arq in ([a.solo] if a.solo else ["naive", "raptor"]):
+    if pregunta:
+        preguntar(pregunta, modelo, arquitecturas)
+        return
+    # Sin pregunta en la línea de comandos: modo interactivo (p. ej. botón "Run" del editor).
+    print(f"Modo interactivo | LLM: {modelo} | embeddings: {config()['embeddings']['modelo']}")
+    print("Escribe una pregunta y presiona Enter (Enter vacío para salir).")
+    while True:
+        try:
+            pregunta = input("\nPregunta: ").strip()
+        except (EOFError, KeyboardInterrupt):
+            break
+        if not pregunta:
+            break
+        preguntar(pregunta, modelo, arquitecturas, eco=False)
+
+
+def preguntar(pregunta: str, modelo: str, arquitecturas: list, eco: bool = True) -> None:
+    if eco:
+        print(f"Pregunta: {pregunta}\nLLM: {modelo}  |  embeddings: {config()['embeddings']['modelo']}")
+    for arq in arquitecturas:
         correr(arq, pregunta, modelo)
 
 

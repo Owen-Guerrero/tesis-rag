@@ -1,0 +1,53 @@
+{
+  // Configuraciones para ejecutar el proyecto desde Visual Studio Code (pestaña "Ejecutar y depurar", F5).
+  // Requiere la extensión "Python" de Microsoft y el intérprete del entorno .venv seleccionado.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Demo: cargar el modelo (calentar)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/pipelines/demo.py",
+      "args": ["--calentar"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": { "PYTHONUTF8": "1" }
+    },
+    {
+      "name": "Demo: una pregunta (naive RAG vs RAPTOR)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/pipelines/demo.py",
+      "args": ["${input:pregunta}"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": { "PYTHONUTF8": "1" }
+    },
+    {
+      "name": "Evaluación: métricas clásicas (tablas.md)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/eval/evaluar.py",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": { "PYTHONUTF8": "1" }
+    },
+    {
+      "name": "Evaluación: contraste RAGAS vs anotación humana",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/eval/contraste_ragas_humano.py",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": { "PYTHONUTF8": "1" }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "pregunta",
+      "type": "promptString",
+      "description": "Pregunta de auditoría (en español)",
+      "default": "¿Qué exige NIST para bloquear cuentas tras intentos fallidos de inicio de sesión?"
+    }
+  ]
+}
