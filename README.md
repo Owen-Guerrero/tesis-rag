@@ -1,9 +1,5 @@
 # Naive RAG vs. RAPTOR para auditorías sobre normas de ciberseguridad
 
-Código, datos de evaluación y resultados del trabajo de investigación
-**"Comparación de arquitecturas RAG estándar y jerárquica (naive RAG vs. RAPTOR) para
-auditorías sobre normas de ciberseguridad"**. Seminario de Investigación I, Universidad de Lima (2026).
-
 - Autores: Franklin Owen Guerrero Angaspilco, Irwin Scott Crisóstomo Porras
 - Asesor: José Valdivia Caballero
 
